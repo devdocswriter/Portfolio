@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shailesh Jha — Technical Writer & AI Documentation Builder</title>
+  <meta name="description" content="Shailesh Jha — Senior Technical Content Engineer with 9+ years turning complex AI, cloud, and API products into clear, credible documentation. Builder of Docutanix and founding technical writer at Gupshup." />
+  <meta name="theme-color" content="#000000" />
+  <meta property="og:title" content="Shailesh Jha — Technical Writer & AI Documentation Builder" />
+  <meta property="og:description" content="9+ years. Founding technical writer. Builder of a RAG-powered documentation agent used by 263 people." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%23000'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Helvetica,Arial' font-weight='700' font-size='28' fill='%23fff'>SJ</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <!-- Scroll progress (CSS scroll-driven animation) -->
+  <div class="progress" aria-hidden="true"></div>
+  <!-- Cursor spotlight -->
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="top">
+    <a href="#top" class="nav__logo" aria-label="Home">SJ<span>.</span></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#docutanix">Docutanix</a>
+      <a href="#impact">Impact</a>
+      <a href="#journey">Journey</a>
+      <a href="#work">Work</a>
+    </nav>
+    <a href="#contact" class="nav__cta magnetic">Let's talk</a>
+  </header>
+
+  <main>
+    <!-- ============ HERO (pinned 3D doc stack) ============ -->
+    <section class="hero" id="hero">
+      <div class="hero__sticky">
+        <div class="hero__mesh" aria-hidden="true">
+          <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+        </div>
+
+        <div class="hero__copy">
+          <p class="eyebrow reveal-up">Senior Technical Content Engineer · Bengaluru</p>
+          <h1 class="hero__title">
+            <span class="line"><span class="word">Shailesh</span> <span class="word">Jha.</span></span>
+          </h1>
+          <p class="hero__sub reveal-up">I turn complex <em>AI, cloud &amp; API</em> products<br class="br-d" /> into documentation people trust.</p>
+        </div>
+
+        <div class="stage" aria-hidden="true">
+          <div class="stack">
+            <article class="sheet s1"><header><i></i><i></i><i></i><b>openapi.yaml</b></header>
+              <pre><span class="k">paths</span>:
+  <span class="s">/v1/messages</span>:
+    <span class="k">post</span>:
+      summary: Send a message
+      security: [ oauth2 ]</pre></article>
+            <article class="sheet s2"><header><i></i><i></i><i></i><b>KB-18342.md</b></header>
+              <h4>Resolving encryption key rotation on AOS 7.3+</h4><p class="ln w90"></p><p class="ln w70"></p><p class="ln w80"></p><p class="tag">Reviewed · Style-compliant</p></article>
+            <article class="sheet s3"><header><i></i><i></i><i></i><b>style-guide/voice.md</b></header>
+              <h4>Voice &amp; Tone</h4><p class="ln w60"></p><p class="ln w90"></p><p class="ln w50"></p><p class="ln w75"></p></article>
+            <article class="sheet s4"><header><i></i><i></i><i></i><b>docutanix · agent</b></header>
+              <div class="chat"><span class="me">Draft a KB from JIRA-4471</span><span class="ai">Retrieving context from 12 Slack threads… ✓<br/>Applying style rules… ✓<br/>Draft ready for human review.</span></div></article>
+            <article class="sheet s5"><header><i></i><i></i><i></i><b>CHANGELOG.md</b></header>
+              <h4>Release notes · v2.11</h4><p class="ln w80"></p><p class="ln w65"></p><p class="ln w85"></p></article>
+          </div>
+        </div>
+
+        <div class="scroll-hint" aria-hidden="true"><span></span>Scroll</div>
+      </div>
+    </section>
+
+    <!-- ============ MANIFESTO (word-by-word scroll reveal) ============ -->
+    <section class="manifesto section">
+      <p class="eyebrow center">The approach</p>
+      <p class="manifesto__text" data-split>
+        I bring a founder's approach to content. Find the unmet need. Validate the technology first-hand. Build systems that scale. Ship, measure, iterate. Nine years across Amazon, Adobe, Rocket Software, Gupshup and Nutanix — from support articles to an AI agent that writes alongside engineers.
+      </p>
+    </section>
+
+    <!-- ============ DOCUTANIX (pinned feature) ============ -->
+    <section class="feature" id="docutanix">
+      <div class="feature__intro section">
+        <p class="eyebrow">Flagship · Nutanix · 2025</p>
+        <h2 class="display">Docutanix.<br /><span class="grad">Docs that draft themselves.</span></h2>
+        <p class="lede">A RAG-powered agent I conceived, built, and launched. It turns raw drafts, Jira tickets and Slack threads into structured, style-compliant Knowledge Base drafts, with a human checking every one before it ships.</p>
+      </div>
+
+      <div class="feature__pin">
+        <div class="feature__steps">
+          <div class="step is-active" data-step="0"><span class="step__n">01</span><h3>Ingest</h3><p>Pulls raw context from Jira tickets, Slack discussions and engineer drafts.</p></div>
+          <div class="step" data-step="1"><span class="step__n">02</span><h3>Retrieve</h3><p>Grounds every claim in source material using Glean AI retrieval.</p></div>
+          <div class="step" data-step="2"><span class="step__n">03</span><h3>Draft</h3><p>Applies embedded style guides, prompt rules, and content segregation.</p></div>
+          <div class="step" data-step="3"><span class="step__n">04</span><h3>Review</h3><p>Hands off to a human, who checks technical accuracy before anything is published.</p></div>
+        </div>
+
+        <div class="device-wrap">
+          <div class="device" data-tilt>
+            <div class="device__bar"><i></i><i></i><i></i><span>docutanix — agent run #10,000+</span></div>
+            <div class="device__body">
+              <div class="pipe">
+                <div class="node" data-node="0"><span>Jira + Slack</span></div>
+                <div class="wire"></div>
+                <div class="node" data-node="1"><span>RAG · Glean</span></div>
+                <div class="wire"></div>
+                <div class="node" data-node="2"><span>Style engine</span></div>
+                <div class="wire"></div>
+                <div class="node" data-node="3"><span>Human review</span></div>
+              </div>
+              <div class="term">
+                <p class="t" data-node="0"><span class="pr">→</span> ingest JIRA-4471 + 12 threads <b>ok</b></p>
+                <p class="t" data-node="1"><span class="pr">→</span> retrieve 38 grounded sources <b>ok</b></p>
+                <p class="t" data-node="2"><span class="pr">→</span> draft KB · 4 style guides applied <b>ok</b></p>
+                <p class="t" data-node="3"><span class="pr">→</span> queued for accuracy review <b class="amber">pending</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats section">
+        <div class="stat"><span class="stat__num"><span data-count="10000">0</span>+</span><span class="stat__label">agent runs</span></div>
+        <div class="stat"><span class="stat__num" data-count="263">0</span><span class="stat__label">active users</span></div>
+        <div class="stat"><span class="stat__num"><span data-count="30">0</span><small>min</small></span><span class="stat__label">saved per draft (est. 20–30)</span></div>
+      </div>
+    </section>
+
+    <!-- ============ BENTO IMPACT ============ -->
+    <section class="impact section" id="impact">
+      <p class="eyebrow">Impact, measured</p>
+      <h2 class="display">Numbers that<br /><span class="serif">moved.</span></h2>
+
+      <div class="bento">
+        <div class="tile t-xl tilt">
+          <span class="tile__k">Knowledge ecosystem</span>
+          <span class="tile__big"><span data-count="9000">0</span>+</span>
+          <p>Articles governed by the writing standards I set up in my first 90 days at Nutanix.</p>
+          <div class="orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+        </div>
+        <div class="tile tilt">
+          <span class="tile__k">Style guides</span>
+          <span class="tile__big" data-count="4">0</span>
+          <p>KB, Confluence, accessibility &amp; training, all published within 90 days.</p>
+        </div>
+        <div class="tile tilt">
+          <span class="tile__k">Guidance modules</span>
+          <span class="tile__big"><span data-count="30">0</span>+</span>
+          <p>Terminology, inclusive language, WCAG-aligned guidance.</p>
+        </div>
+        <div class="tile t-wide tilt">
+          <span class="tile__k">Approval backlog</span>
+          <div class="bars">
+            <div class="bar"><span style="--h:100%"></span><em>250–300</em><small>before</small></div>
+            <div class="bar"><span style="--h:30%"></span><em>50–100</em><small>after</small></div>
+          </div>
+          <p>Reduced the daily KB approval queue through quality-focused reviews and queue management.</p>
+        </div>
+        <div class="tile tilt">
+          <span class="tile__k">KBs approved · H2 FY26</span>
+          <span class="tile__big" data-count="874">0</span>
+          <p>About 15% of published volume, with zero SLA misses.</p>
+        </div>
+        <div class="tile tilt accent">
+          <span class="tile__k">Case deflection</span>
+          <span class="tile__big"><span data-count="47.76" data-decimals="2">0</span>%</span>
+          <p>Up from 44.42% as KB quality &amp; coverage initiatives landed.</p>
+        </div>
+        <div class="tile tilt">
+          <span class="tile__k">Localization POC</span>
+          <span class="tile__big"><span data-count="5000">0</span>+</span>
+          <p>Japanese KBs, with safeguards so code blocks and CLI commands are never translated.</p>
+        </div>
+        <div class="tile tilt">
+          <span class="tile__k">Jira tickets resolved</span>
+          <span class="tile__big" data-count="168">0</span>
+          <p>Serviceability tickets, plus 50+ KB feedback records.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ JOURNEY (horizontal 3D scroll) ============ -->
+    <section class="journey" id="journey">
+      <div class="journey__head section">
+        <p class="eyebrow">The journey</p>
+        <h2 class="display">Nine years.<br /><span class="serif">Five companies.</span></h2>
+      </div>
+      <div class="journey__pin">
+        <div class="track">
+          <article class="job">
+            <span class="job__year">2025 — Now</span>
+            <h3>Nutanix</h3>
+            <p class="job__role">Senior Technical Content Engineer</p>
+            <ul>
+              <li>Built &amp; launched Docutanix, the most-used internal AI drafting agent</li>
+              <li>Evaluated Glean, Gemini, Agentforce &amp; NXpert for hallucinations</li>
+              <li>Caught critical AOS 7.3+ encryption guidance errors linked to production incidents</li>
+              <li>Earned NCP-MCI 6.10 certification</li>
+            </ul>
+          </article>
+          <article class="job">
+            <span class="job__year">2022 — 2025</span>
+            <h3>Gupshup</h3>
+            <p class="job__role">Lead · Founding Technical Writer</p>
+            <ul>
+              <li>Built the technical writing function from zero; promoted Senior → Lead</li>
+              <li>REST APIs, SDKs, OAuth, webhooks &amp; event-driven docs</li>
+              <li>Rebuilt the ReadMe developer portal with Docs-as-Code on GitHub Actions</li>
+              <li>Prioritized fixes using ReadMe Analytics &amp; Hotjar</li>
+            </ul>
+          </article>
+          <article class="job">
+            <span class="job__year">2021 — 2022</span>
+            <h3>Rocket Software</h3>
+            <p class="job__role">Information Developer II</p>
+            <ul>
+              <li>API, CLI &amp; integration docs for hybrid-cloud products</li>
+              <li>Architecture, sequence &amp; call-flow diagrams</li>
+              <li>Modular IA with context-sensitive help</li>
+            </ul>
+          </article>
+          <article class="job">
+            <span class="job__year">2019 — 2021</span>
+            <h3>Adobe</h3>
+            <p class="job__role">Social Support Consultant</p>
+            <ul>
+              <li>Troubleshooting guides, how-tos &amp; release notes</li>
+              <li>Turned community feedback into content priorities</li>
+              <li>Supported localization for global L1/L2 teams</li>
+            </ul>
+          </article>
+          <article class="job">
+            <span class="job__year">2017 — 2019</span>
+            <h3>Amazon</h3>
+            <p class="job__role">CS Associate (E)</p>
+            <ul>
+              <li>KB articles, FAQs &amp; troubleshooting guides</li>
+              <li>Explained AWS IAM, EC2 &amp; service limits</li>
+              <li>Tested documented workflows hands-on</li>
+            </ul>
+          </article>
+          <article class="job job--end">
+            <span class="job__year">Foundation</span>
+            <h3>B.Tech, CSE</h3>
+            <p class="job__role">West Bengal University of Technology</p>
+            <ul><li>Computer Science Engineering · CGPA 7.38</li><li>Nutanix Certified Professional, Multicloud Infrastructure (NCP-MCI 6.10)</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ZERO-TO-ONE (sticky stacking cards) ============ -->
+    <section class="zero section" id="initiatives">
+      <p class="eyebrow">Zero-to-one</p>
+      <h2 class="display">Things I started<br /><span class="serif">from nothing.</span></h2>
+
+      <div class="cards">
+        <article class="card c1">
+          <div class="card__meta"><span>01</span><span>Gupshup</span></div>
+          <h3>A documentation function, from scratch.</h3>
+          <p>Content strategy, developer information architecture, editorial standards, templates, review processes and onboarding, all built for a conversational AI platform that had no documentation team before.</p>
+          <div class="chips"><span>Information architecture</span><span>ReadMe</span><span>OpenAPI</span><span>Postman</span></div>
+        </article>
+        <article class="card c2">
+          <div class="card__meta"><span>02</span><span>Nutanix</span></div>
+          <h3>Docutanix: an AI agent that writes alongside engineers.</h3>
+          <p>From concept to the most-used internal drafting agent. Prompt design, style rules, content segregation and human review, all built into a repeatable workflow.</p>
+          <div class="chips"><span>RAG</span><span>Glean AI</span><span>Prompt engineering</span><span>LLM evaluation</span></div>
+        </article>
+        <article class="card c3">
+          <div class="card__meta"><span>03</span><span>Nutanix</span></div>
+          <h3>Docs-as-Code for Salesforce Knowledge.</h3>
+          <p>Business requirements and a proof of concept for Git/Markdown authoring, automated validation, version control and publishing sync, with an assessment of feasibility and ROI.</p>
+          <div class="chips"><span>Git</span><span>Markdown</span><span>CI/CD</span><span>Salesforce</span></div>
+        </article>
+        <article class="card c4">
+          <div class="card__meta"><span>04</span><span>Nutanix</span></div>
+          <h3>AI-assisted Japanese localization.</h3>
+          <p>Strategy and a proof of concept for 5,000+ customer-facing KBs: prioritization, readiness criteria, and safeguards that keep CLI commands and code blocks intact.</p>
+          <div class="chips"><span>Localization</span><span>Governance</span><span>AI safety rails</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS (marquee) ============ -->
+    <section class="skills" id="skills">
+      <div class="section">
+        <p class="eyebrow">Toolkit</p>
+        <h2 class="display">Fluent in the<br /><span class="grad">stack.</span></h2>
+      </div>
+      <div class="marquee" style="--speed:42s">
+        <div class="marquee__row">
+          <span>REST APIs</span><span>OpenAPI / Swagger</span><span>Postman</span><span>Redoc</span><span>Stoplight</span><span>SDK Docs</span><span>OAuth</span><span>Webhooks</span><span>JSON</span><span>YAML</span><span>CLI References</span>
+        </div>
+      </div>
+      <div class="marquee reverse" style="--speed:48s">
+        <div class="marquee__row">
+          <span>RAG Workflows</span><span>Glean AI Agents</span><span>Gemini</span><span>Agentforce</span><span>NXpert</span><span>Prompt Engineering</span><span>Hallucination Detection</span><span>LLM Evaluation</span><span>Human-in-the-loop</span>
+        </div>
+      </div>
+      <div class="marquee" style="--speed:52s">
+        <div class="marquee__row">
+          <span>Git</span><span>GitHub Actions</span><span>GitLab CI/CD</span><span>Markdown</span><span>Docusaurus</span><span>ReadMe</span><span>GitBook</span><span>DITA / XML</span><span>MadCap Flare</span><span>Salesforce Knowledge</span><span>Confluence</span><span>AWS</span><span>Nutanix AOS</span><span>Prism Central</span>
+        </div>
+      </div>
+
+      <div class="caps section">
+        <div class="cap tilt"><span class="cap__ico">✎</span><h3>Technical storytelling</h3><p>Explainers, tutorials, quickstarts, conceptual docs, SME discovery, information architecture.</p></div>
+        <div class="cap tilt"><span class="cap__ico">◎</span><h3>AI &amp; research</h3><p>RAG pipelines, agent prompts, source-grounded validation, LLM output evaluation.</p></div>
+        <div class="cap tilt"><span class="cap__ico">{ }</span><h3>Developer tech</h3><p>APIs, SDKs, Docs-as-Code, CI/CD publishing, analytics-driven iteration.</p></div>
+        <div class="cap tilt"><span class="cap__ico">⚖</span><h3>Governance</h3><p>Style guides, terminology, accessibility (WCAG), content lifecycle &amp; quality gates.</p></div>
+      </div>
+    </section>
+
+    <!-- ============ WRITING SAMPLES ============ -->
+    <section class="work section" id="work">
+      <p class="eyebrow">Selected writing</p>
+      <h2 class="display">Read the<br /><span class="serif">work.</span></h2>
+      <div class="samples">
+        <a class="sample tilt" href="https://docs.gupshup.io/reference/msg" target="_blank" rel="noopener">
+          <span class="sample__k">API Documentation</span>
+          <h3>Gupshup Messaging API Reference</h3>
+          <p>Endpoints, auth, request/response payloads and error handling.</p>
+          <span class="sample__go">docs.gupshup.io ↗</span>
+        </a>
+        <a class="sample tilt" href="https://docs.gupshup.io/docs/overview" target="_blank" rel="noopener">
+          <span class="sample__k">Product Documentation</span>
+          <h3>Gupshup Platform Overview</h3>
+          <p>Modular information architecture for a conversational AI platform.</p>
+          <span class="sample__go">docs.gupshup.io ↗</span>
+        </a>
+        <a class="sample tilt" href="https://docs.gupshup.io/changelog/whatsapp-self-serve-platform" target="_blank" rel="noopener">
+          <span class="sample__k">Release Notes</span>
+          <h3>WhatsApp Self-Serve Platform Changelog</h3>
+          <p>Release communication that keeps pace with Agile releases.</p>
+          <span class="sample__go">docs.gupshup.io ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact" id="contact">
+      <div class="contact__inner section">
+        <p class="eyebrow center">Open to senior &amp; founding roles</p>
+        <h2 class="contact__title">Let's make the<br /><span class="serif grad">complex clear.</span></h2>
+        <div class="contact__actions">
+          <a class="btn btn--primary magnetic" href="mailto:shajha1309@gmail.com">shajha1309@gmail.com</a>
+          <a class="btn magnetic" href="tel:+919513217674">+91 951-3217-674</a>
+          <a class="btn magnetic" href="https://www.linkedin.com/in/jhashail/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn magnetic" href="assets/Shailesh_Jha_Resume.pdf" download>Résumé ↓</a>
+        </div>
+      </div>
+      <footer class="footer">
+        <span>© <span id="year"></span> Shailesh Jha · Bengaluru, India</span>
+        <a href="#top">Back to top ↑</a>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Libraries (pinned versions) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

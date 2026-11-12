@@ -1,23 +1,26 @@
 # Shailesh Jha — Portfolio
 
-A technical writer's portfolio, laid out as a documentation site drawn on paper. Plain HTML, CSS and JS, with no build step, ready for GitHub Pages.
+A technical writer's portfolio, laid out as a documentation site. Plain HTML, CSS and JS, with no build step, ready for GitHub Pages.
 
-## What's inside
+## Design intent
+- **Message:** this person makes complicated products clear, and catches the errors before users do.
+- **Muse:** an editor's marked-up galley proof. Clean paper, ink type, red-pen corrections and margin queries.
+- **Colour roles** (scarce on purpose): ink for text and the one solid action per view; **red pen only for edits** (strikes, insertions, queries, "latest"); highlighter only for "you are here" in the contents; blue for links; green only for HTTP `GET` / `200`.
+- **Type:** Shantell Sans for display. Its informal axis (`INFM`) is the "pen" for hand-written marks. IBM Plex Sans is the body face and IBM Plex Mono is for code and labels; they're one superfamily.
+- **Paper:** ruled paper only for hand-written things (the overview and the letter); every other page is plain.
+
+## Sections
 | Section | What it is |
 |---|---|
-| Overview | Ruled notebook page. A red-pen edit (~~jargon~~ → *context*), marker highlights and **Fig. 1**, a cursor-scrubbed figure where scattered code assembles into a reviewed doc page |
-| Quickstart | "Working with me" in three steps, on graph paper, with a Tip admonition |
-| Docutanix | Case study: hand-drawn pipeline, sticky-note stats, a YAML config and a Warning callout |
-| Changelog | Career history in *Keep a Changelog* format (Added / Fixed / Improved / Changed), one taped slip per role |
-| API: /skills | Skills as an API reference with a fields table, Response/cURL tabs and a **Try it** button that calls the real `api/skills.json` |
-| Style guide | Do / Don't cards with the Don'ts struck through in red |
-| By the numbers | Impact metrics itemized on a receipt, plus ticket stubs |
-| Writing samples | Index cards linking to published docs |
-| Contact | A letter, contact details and a "Was this page helpful?" widget |
+| Overview | Name, positioning line with a live red-pen edit (~~jargon~~ → *context*), one action, and **Fig. 1**: scattered code assembles into a reviewed doc page as you move the cursor |
+| Case study: Docutanix | Problem and build, three headline numbers, a hand-drawn pipeline ending in human review, and an evaluation note |
+| Changelog | Career history in *Keep a Changelog* format, one version per role |
+| Editing, shown | A real before/after paragraph with proofreading marks and numbered queries (31 → 20 words) |
+| API: /skills | Skills as an API reference. **Try it** calls the real `api/skills.json` |
+| Writing samples | Links to published Gupshup docs |
+| Contact | A short letter, one "Email me" action, and other contact details |
 
-Docs chrome: sticky index-card table of contents with scrollspy, breadcrumbs, `#` heading anchors, a search palette (press `/` or Ctrl/⌘+K), copy buttons, and "Edit this page on GitHub".
-
-Hand-drawn lines come from [rough.js](https://roughjs.com) and [rough-notation](https://roughnotation.com). Buttons "boil" (redraw) on hover. The paper style is inspired by [Looseleaf](https://github.com/kevintngo/looseleaf). Everything respects `prefers-reduced-motion`, and the page is fully readable without JavaScript.
+Docs chrome: contents sidebar with scrollspy, breadcrumbs, `#` heading anchors, search (press `/` or Ctrl/⌘+K), copy buttons, and "Edit this page on GitHub". Hand-drawn outlines and strikes use [rough.js](https://roughjs.com) and [rough-notation](https://roughnotation.com). Everything respects `prefers-reduced-motion`, and the page is fully readable without JavaScript.
 
 ## Deploy to GitHub Pages
 1. Create a repo named **`<your-username>.github.io`** (gives you `https://<your-username>.github.io`), or any repo name (gives `https://<your-username>.github.io/<repo>`).

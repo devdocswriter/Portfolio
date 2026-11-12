@@ -39,7 +39,7 @@
     const rc = rough.svg(svg);
     svg.appendChild(rc.rectangle(4, 4, w, h, {
       seed: seed || el._seed || (el._seed = 1 + Math.floor(Math.random() * 9999)),
-      roughness: 1.3, bowing: 1.2, strokeWidth: 1.7, stroke: INK,
+      roughness: 1.2, bowing: 1.1, strokeWidth: 1.6, stroke: el.dataset.roughStroke || INK,
       fill: fill || undefined, fillStyle: fill ? "solid" : undefined,
     }));
   }
@@ -53,7 +53,7 @@
     }
     // "boil": redraw the line with a new seed while hovered, like a hand-drawn loop
     if (canHover && !reduced) {
-      $$(".btn[data-rough], .search[data-rough], .toc-toggle[data-rough]").forEach((el) => {
+      $$(".btn[data-rough]").forEach((el) => {
         let t = 0;
         el.addEventListener("pointerenter", () => {
           clearInterval(t);
@@ -66,51 +66,49 @@
   }
 
   /* ---------------------------------------------------------
-     2. Text annotations (rough-notation), drawn when scrolled into view
+     2. Red-pen edits (rough-notation). Each .edit strikes its <del>,
+        then writes its <ins>. They play in reading order, once,
+        when the sheet scrolls into view.
      --------------------------------------------------------- */
   const RN = window.RoughNotation;
-  const annotated = new Map();
+  if (!RN) root.classList.add("no-annotate");
+  const marks = new Map();
   if (RN) {
     $$("[data-annotate]").forEach((el) => {
-      const a = RN.annotate(el, {
+      marks.set(el, RN.annotate(el, {
         type: el.dataset.annotate,
         color: el.dataset.color || "#c2412d",
-        strokeWidth: el.dataset.annotate === "highlight" ? 1 : 2,
-        padding: el.dataset.annotate === "circle" ? 6 : el.dataset.annotate === "highlight" ? 2 : 3,
-        multiline: true,
-        iterations: el.dataset.annotate === "highlight" ? 1 : 2,
-        animate: !reduced,
-        animationDuration: el.dataset.annotate === "highlight" ? 900 : 650,
-      });
-      annotated.set(el, a);
+        strokeWidth: 1.7, padding: 2, iterations: 1, multiline: true,
+        animate: !reduced, animationDuration: 420,
+      }));
     });
-    const showGroup = (els) => els.forEach((el, i) => {
-      const a = annotated.get(el);
-      if (!a || a.isShowing()) return;
-      setTimeout(() => a.show(), reduced ? 0 : i * 420);
-    });
-    if ("IntersectionObserver" in window) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (!e.isIntersecting) return;
-          io.unobserve(e.target);
-          showGroup($$("[data-annotate]", e.target));
-        });
-      }, { threshold: 0.3 });
-      // group by section so marks play in reading order
-      $$(".sheet").forEach((s) => { if (s.querySelector("[data-annotate]")) io.observe(s); });
-    } else {
-      showGroup($$("[data-annotate]"));
-    }
-    // the hero "edit": strike the old word, then write the new one
-    const edit = $(".edit");
-    if (edit) setTimeout(() => edit.classList.add("is-done"), reduced ? 0 : 900);
-    // annotations are absolutely positioned; keep them aligned after fonts settle
-    document.fonts && document.fonts.ready.then(() => annotated.forEach((a) => { if (a.isShowing()) { a.hide(); a.show(); } }));
-  } else {
-    const edit = $(".edit");
-    if (edit) edit.classList.add("is-done");
   }
+  const playEdits = (sheet) => {
+    $$(".edit", sheet).forEach((ed, i) => {
+      const del = ed.querySelector("[data-annotate]");
+      const step = reduced ? 0 : 520;
+      setTimeout(() => {
+        const m = del && marks.get(del);
+        if (m) m.show();
+        setTimeout(() => ed.classList.add("is-done"), m && !reduced ? 380 : 0);
+      }, 300 + i * step);
+    });
+  };
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        playEdits(e.target);
+      });
+    }, { threshold: 0.35 });
+    $$(".sheet").forEach((sh) => { if (sh.querySelector(".edit")) io.observe(sh); });
+  } else {
+    $$(".sheet").forEach(playEdits);
+  }
+  // strikes are absolutely positioned; re-place them once webfonts settle
+  if (document.fonts) document.fonts.ready.then(() => marks.forEach((m) => { if (m.isShowing()) { m.hide(); m.show(); } }));
+  window.addEventListener("resize", () => marks.forEach((m) => { if (m.isShowing()) { m.hide(); m.show(); } }));
 
   /* ---------------------------------------------------------
      3. Fig. 1 — cursor-scrubbed image sequence
@@ -259,20 +257,18 @@
   const input = $("#palette-input");
   const list = $("#palette-list");
   const INDEX = [
-    { t: "Overview", id: "overview", s: "Getting started", k: "about bio shailesh jha technical writer bengaluru" },
-    { t: "Quickstart: working with me", id: "quickstart", s: "Getting started", k: "process steps hire" },
-    { t: "Case study: Docutanix", id: "docutanix", s: "Guides", k: "ai agent rag glean nutanix drafting kb" },
-    { t: "Style guide (excerpt)", id: "style-guide", s: "Guides", k: "editorial voice do dont accessibility writing rules" },
-    { t: "By the numbers", id: "numbers", s: "Guides", k: "impact metrics kb approved backlog deflection receipt" },
-    { t: "Changelog", id: "changelog", s: "Reference", k: "career experience history jobs releases" },
-    { t: "v5.0.0 · Nutanix", id: "changelog", s: "Changelog", k: "nutanix senior technical content engineer aos prism" },
-    { t: "v4.0.0 · Gupshup", id: "changelog", s: "Changelog", k: "gupshup founding lead readme portal api sdk" },
+    { t: "Overview", id: "overview", s: "Docs", k: "about bio shailesh jha technical writer bengaluru resume" },
+    { t: "Case study: Docutanix", id: "docutanix", s: "Case study", k: "ai agent rag glean nutanix drafting kb llm evaluation" },
+    { t: "Changelog", id: "changelog", s: "Reference", k: "career experience history jobs" },
+    { t: "v5.0.0 · Nutanix", id: "changelog", s: "Changelog", k: "nutanix senior technical content engineer aos style guides localization" },
+    { t: "v4.0.0 · Gupshup", id: "changelog", s: "Changelog", k: "gupshup founding lead readme portal api sdk github actions" },
     { t: "v3.0.0 · Rocket Software", id: "changelog", s: "Changelog", k: "rocket information developer cli hybrid cloud" },
     { t: "v2.0.0 · Adobe", id: "changelog", s: "Changelog", k: "adobe support release notes" },
     { t: "v1.0.0 · Amazon", id: "changelog", s: "Changelog", k: "amazon aws iam ec2 faq" },
-    { t: "API: GET /skills", id: "api", s: "Reference", k: "skills tools json openapi postman git" },
+    { t: "Editing, shown", id: "editing", s: "Editing", k: "style guide edit review proofread voice clarity" },
+    { t: "API: GET /skills", id: "api", s: "Reference", k: "skills tools json openapi postman git docs as code" },
     { t: "Writing samples", id: "samples", s: "Reference", k: "portfolio work examples gupshup docs" },
-    { t: "Contact", id: "contact", s: "Support", k: "email phone linkedin resume hire" },
+    { t: "Contact", id: "contact", s: "Contact", k: "email phone linkedin hire" },
   ];
   let results = [], sel = 0;
   const render = () => {
@@ -342,12 +338,12 @@
 
   const copyText = async (text, btn) => {
     const done = (msg) => { const o = btn.textContent; btn.textContent = msg; setTimeout(() => (btn.textContent = o), 1400); };
-    try { await navigator.clipboard.writeText(text); done("copied ✓"); }
+    try { await navigator.clipboard.writeText(text); done("Copied"); }
     catch {
       const r = document.createRange(); const span = document.createElement("span");
       span.textContent = text; document.body.appendChild(span); r.selectNodeContents(span);
       const s = getSelection(); s.removeAllRanges(); s.addRange(r);
-      try { document.execCommand("copy"); done("copied ✓"); } catch { done("select & copy"); }
+      try { document.execCommand("copy"); done("Copied"); } catch { done("Select and copy"); }
       s.removeAllRanges(); span.remove();
     }
   };

@@ -2,7 +2,7 @@
 <html><head><meta charset="utf-8">
 <!-- Renders the "Code → Clarity" figure as a transparent WebP frame sequence.
      Usage: serve this folder, then `node run.js <out-dir> <frame-count>`. -->
-<link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@600;800&family=IBM+Plex+Sans:wght@400&family=IBM+Plex+Mono:wght@500&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@600;800&family=IBM+Plex+Sans:wght@400&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>html,body{margin:0;background:transparent}</style>
 </head><body>
 <script type="module">
@@ -13,8 +13,16 @@ await Promise.all([
   document.fonts.load('800 64px "Shantell Sans"'),
   document.fonts.load('400 64px "IBM Plex Sans"'),
   document.fonts.load('500 64px "IBM Plex Mono"'),
-  document.fonts.load('600 64px Caveat'),
 ]);
+// Pen marks use Shantell Sans at full informality + bounce (same family, handwritten register).
+// Canvas can't set font-variation-settings, so load a pinned instance under its own name.
+{
+  const css = await (await fetch('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght,BNCE,INFM@600,60,100&display=swap')).text();
+  const blocks = css.split('@font-face').filter((b) => b.includes('U+0000-00FF'));
+  const url = (blocks[0] || css).match(/url\(([^)]+)\)/)[1];
+  const face = new FontFace('Shantell Pen', `url(${url})`, { weight: '600' });
+  document.fonts.add(await face.load());
+}
 
 // deterministic RNG so every render is identical
 let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
@@ -31,11 +39,11 @@ camera.position.set(0, 0, 19);
 const world = new THREE.Group(); scene.add(world);
 
 /* ---------- ink palette (matches the site's paper theme) ---------- */
-const INK = '#2a2420', INK_SOFT = '#4a423b', BLUE = '#2c4f9e', MARKER = '#df6b3c', RED = '#c2412d', GREEN = '#3b7a4b', PENCIL = '#6b6660';
+const INK = '#2a2420', INK_SOFT = '#4a423b', RED = '#c2412d', GREEN = '#3b7a4b', PENCIL = '#6b6660';
 
 /* ---------- glyph textures ---------- */
 const texCache = new Map();
-const FONTS = { h: '800 104px "Shantell Sans"', b: '400 84px "IBM Plex Sans"', c: '500 80px "IBM Plex Mono"', s: '600 96px Caveat' };
+const FONTS = { h: '800 104px "Shantell Sans"', b: '400 84px "IBM Plex Sans"', c: '500 80px "IBM Plex Mono"', s: '600 96px "Shantell Pen"' };
 const measure = document.createElement('canvas').getContext('2d');
 function glyph(ch, kind) {
   const key = kind + ch;
@@ -56,14 +64,14 @@ function glyph(ch, kind) {
 const PAGE_W = 8.4, PAGE_H = 7.6;
 const LINES = [
   { t: 'Send a message', k: 'h', s: 0.0060, col: INK, gap: 1.05 },
-  { t: 'POST  /v1/messages', k: 'c', s: 0.0042, col: BLUE, gap: 0.95, pill: true },
+  { t: 'POST  /v1/messages', k: 'c', s: 0.0042, col: INK_SOFT, gap: 0.95, pill: true },
   { t: 'Authenticate with OAuth 2.0, then', k: 'b', s: 0.0045, col: INK_SOFT, gap: 0.56 },
   { t: 'send a JSON body to the endpoint.', k: 'b', s: 0.0045, col: INK_SOFT, gap: 0.95 },
-  { t: '{ "to": "user", "text": "Hi" }', k: 'c', s: 0.0040, col: '#a4502a', gap: 0.95, pill: true },
+  { t: '{ "to": "user", "text": "Hi" }', k: 'c', s: 0.0040, col: INK_SOFT, gap: 0.95, pill: true },
   { t: '200 OK  ·  delivered', k: 'c', s: 0.0040, col: GREEN, gap: 0.6 },
 ];
 const tiles = [];
-const PALETTE = [INK, INK, BLUE, MARKER, RED, PENCIL];
+const PALETTE = [INK, INK, INK, PENCIL, PENCIL, RED];
 let y = PAGE_H / 2 - 1.55;
 const left = -PAGE_W / 2 + 0.75;
 const pills = [];
@@ -74,7 +82,7 @@ for (const L of LINES) {
     const g = glyph(ch, L.k);
     const adv = g.adv * L.s;
     if (ch !== ' ') {
-      // in the "code" state a share of letters are scribbled in pen (Caveat)
+      // in the "code" state a share of letters are scribbled in pen (Shantell Pen)
       const loose = rnd() < 0.35 ? glyph(ch, 's') : g;
       const geo = new THREE.PlaneGeometry(g.w * L.s, g.h * L.s);
       const mat = new THREE.MeshBasicMaterial({ map: g.tex, transparent: true, depthWrite: false, side: THREE.DoubleSide });
@@ -140,9 +148,6 @@ for (const p of pills) {
   pg.fillStyle = 'rgba(236,230,218,0.95)'; pg.fillRect(x0, top, w, 88);
   pg.strokeStyle = 'rgba(142,136,127,0.9)'; pg.lineWidth = 3; pg.strokeRect(x0, top, w, 88);
 }
-// yellow marker swipe under the heading
-pg.fillStyle = 'rgba(248,220,76,0.55)';
-pg.fillRect(PAD + 92, PAD + (PAGE_H / 2 - (PAGE_H / 2 - 1.55)) * PX + 6, 640, 46);
 const ptex = new THREE.CanvasTexture(pc); ptex.colorSpace = THREE.SRGBColorSpace; ptex.anisotropy = 8;
 const pmat = new THREE.MeshBasicMaterial({ map: ptex, transparent: true, depthWrite: false });
 const panel = new THREE.Mesh(new THREE.PlaneGeometry(PAGE_W * pc.width / W, PAGE_H * pc.height / H), pmat);

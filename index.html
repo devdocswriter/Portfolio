@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shailesh Jha · Technical Writer</title>
   <meta name="description" content="Shailesh Jha is a senior technical writer with 9+ years of experience documenting AI, cloud and API products. Builder of Docutanix, a RAG documentation agent, and founding technical writer at Gupshup." />
-  <meta name="theme-color" content="#a9c4b8" />
+  <meta name="theme-color" content="#e6e1d6" />
   <meta property="og:title" content="Shailesh Jha · Technical Writer" />
-  <meta property="og:description" content="Docs, drawn by hand. Nine years turning engineering context into documentation people trust." />
+  <meta property="og:description" content="I turn engineering context into documentation people trust." />
   <meta property="og:type" content="website" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect x='10' y='6' width='44' height='52' rx='4' fill='%23f8f5ee' stroke='%232a2420' stroke-width='3'/><path d='M18 20h28M18 30h28M18 40h18' stroke='%232c4f9e' stroke-width='3' stroke-linecap='round'/><path d='M16 29h24' stroke='%23f8dc4c' stroke-width='7' opacity='.7'/></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect x='10' y='6' width='44' height='52' rx='3' fill='%23faf7f0' stroke='%232a2420' stroke-width='3'/><path d='M18 22h28M18 32h28M18 42h16' stroke='%238e887f' stroke-width='3' stroke-linecap='round'/><path d='M16 33 L48 29' stroke='%23c2412d' stroke-width='4' stroke-linecap='round'/></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;600;800&family=Caveat:wght@500;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght,BNCE,INFM,SPAC@0,300..800,-100..100,0..100,0..100&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
@@ -21,19 +21,19 @@
   <!-- ===================== TOP BAR ===================== -->
   <header class="topbar">
     <div class="topbar__inner">
-      <button class="toc-toggle" type="button" aria-controls="toc" aria-expanded="false" data-rough>
+      <button class="toc-toggle" type="button" aria-controls="toc" aria-expanded="false">
         <span aria-hidden="true">☰</span> Contents
       </button>
-      <a class="brand" href="#overview" aria-label="shailesh.docs home">
-        <svg viewBox="0 0 40 40" width="30" height="30" aria-hidden="true"><rect x="7" y="4" width="26" height="32" rx="3" fill="#f8f5ee" stroke="#2a2420" stroke-width="2"/><path d="M12 13h16M12 20h16M12 27h10" stroke="#2c4f9e" stroke-width="2" stroke-linecap="round"/><path d="M11 19.5h14" stroke="#f8dc4c" stroke-width="5" opacity=".75"/><circle cx="7" cy="10" r="1.6" fill="#2a2420"/><circle cx="7" cy="20" r="1.6" fill="#2a2420"/><circle cx="7" cy="30" r="1.6" fill="#2a2420"/></svg>
-        <span>shailesh<b>.docs</b></span>
+      <a class="brand" href="#overview" aria-label="shailesh.docs, back to top">
+        <svg viewBox="0 0 40 40" width="28" height="28" aria-hidden="true"><rect x="7" y="4" width="26" height="32" rx="2" fill="#faf7f0" stroke="#2a2420" stroke-width="2"/><path d="M12 13h16M12 20h16M12 27h10" stroke="#8e887f" stroke-width="2" stroke-linecap="round"/><path d="M11 20.5 L29 18" stroke="#c2412d" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <span>shailesh.docs</span>
       </a>
-      <button class="search" type="button" data-open-search data-rough>
+      <button class="search" type="button" data-open-search>
         <span aria-hidden="true">⌕</span><span class="search__label">Search docs</span><kbd>/</kbd>
       </button>
       <nav class="topbar__links" aria-label="Elsewhere">
         <a href="https://www.linkedin.com/in/jhashail/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn btn--marker" href="assets/Shailesh_Jha_Resume.pdf" download data-rough data-rough-fill="#df6b3c">Résumé.pdf</a>
+        <a href="assets/Shailesh_Jha_Resume.pdf" download>Résumé</a>
       </nav>
     </div>
   </header>
@@ -42,27 +42,14 @@
     <!-- ===================== SIDEBAR (table of contents) ===================== -->
     <aside class="toc" id="toc" aria-label="Contents">
       <div class="toc__card">
-        <span class="tape tape--top" aria-hidden="true"></span>
-        <p class="toc__ver"><span class="pill">v9.0</span> <span>stable · since 2017</span></p>
-        <p class="toc__group">Getting started</p>
+        <p class="toc__ver">v9.0 · writing docs since 2017</p>
         <ol class="toc__list">
           <li><a href="#overview">Overview</a></li>
-          <li><a href="#quickstart">Quickstart</a></li>
-        </ol>
-        <p class="toc__group">Guides</p>
-        <ol class="toc__list">
           <li><a href="#docutanix">Case study: Docutanix</a></li>
-          <li><a href="#style-guide">Style guide</a></li>
-          <li><a href="#numbers">By the numbers</a></li>
-        </ol>
-        <p class="toc__group">Reference</p>
-        <ol class="toc__list">
           <li><a href="#changelog">Changelog</a></li>
+          <li><a href="#editing">Editing, shown</a></li>
           <li><a href="#api">API: /skills</a></li>
           <li><a href="#samples">Writing samples</a></li>
-        </ol>
-        <p class="toc__group">Support</p>
-        <ol class="toc__list">
           <li><a href="#contact">Contact</a></li>
         </ol>
         <p class="toc__updated">Last updated <time datetime="2026-11-12">12 Nov 2026</time></p>
@@ -71,37 +58,27 @@
 
     <main id="main" class="content">
 
-      <!-- ===================== OVERVIEW / HERO ===================== -->
+      <!-- ===================== OVERVIEW ===================== -->
       <section class="sheet sheet--ruled hero" id="overview" aria-labelledby="overview-title">
-        <nav class="crumbs" aria-label="Breadcrumb"><a href="#overview">Docs</a><span>/</span><a href="#overview">About</a><span>/</span><span aria-current="page">Overview</span></nav>
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="#overview">Docs</a><span aria-hidden="true">/</span><span aria-current="page">Overview</span></nav>
 
         <div class="hero__grid">
           <div class="hero__copy">
-            <h1 id="overview-title" class="hero__name">Shailesh Jha<span class="note note--name" aria-hidden="true">← 9+ years of this</span></h1>
+            <h1 id="overview-title" class="hero__name">Shailesh Jha</h1>
             <p class="hero__lede">
               I turn engineering
-              <span class="edit"><del data-annotate="strike-through" data-color="#c2412d">jargon</del><ins>context</ins></span>
-              into documentation people <span data-annotate="highlight" data-color="#f8dc4c99">actually use.</span>
+              <span class="edit"><del data-annotate="strike-through">jargon</del><ins>context</ins></span>
+              into documentation people trust.
             </p>
             <p class="hero__body">
-              Senior Technical Content Engineer at <strong>Nutanix</strong>, where I built
-              <span data-annotate="underline" data-color="#2c4f9e">Docutanix</span>, an AI agent that drafts docs.
-              Before that, the <span data-annotate="circle" data-color="#c2412d">founding</span> technical writer at Gupshup.
-              Nine years across AI, cloud and API products.
+              Senior Technical Content Engineer at Nutanix. Founding technical writer at Gupshup.
+              Nine years documenting AI, cloud and API products, and testing every step before it ships.
             </p>
-
             <div class="hero__cta">
-              <a class="btn btn--marker" href="#changelog" data-rough data-rough-fill="#df6b3c">Read the changelog</a>
-              <a class="btn" href="#contact" data-rough>Get in touch</a>
+              <a class="btn btn--ink" href="#contact" data-rough data-rough-fill="#2a2420">Get in touch</a>
+              <a class="link-quiet" href="assets/Shailesh_Jha_Resume.pdf" download>Résumé (PDF) ↓</a>
             </div>
-
-            <dl class="meta" data-rough>
-              <div><dt>Location</dt><dd>Bengaluru, India</dd></div>
-              <div><dt>Focus</dt><dd>AI · APIs · Docs-as-Code</dd></div>
-              <div><dt>Certified</dt><dd>NCP-MCI 6.10</dd></div>
-              <div><dt>Status</dt><dd>Open to senior &amp; founding roles</dd></div>
-            </dl>
-
+            <p class="hero__status">Bengaluru, India · NCP-MCI 6.10 · Open to senior &amp; founding roles</p>
           </div>
 
           <figure class="fig">
@@ -109,211 +86,193 @@
               <canvas class="hero__canvas" width="800" height="800" role="img"
                 aria-label="Scattered handwritten and code characters assembling into a ruled documentation page titled Send a message, stamped Reviewed."></canvas>
             </div>
-            <div class="scrub" aria-hidden="true"><span>code</span><span class="scrub__track"><i></i></span><span>clarity</span></div>
-            <figcaption><b>Fig. 1</b> <span class="fig-hint">Move your cursor across to edit code into clarity.</span></figcaption>
-            <span class="stamp stamp--hero" aria-hidden="true">v9.0 · stable</span>
+            <div class="scrub" aria-hidden="true"><span>draft</span><span class="scrub__track"><i></i></span><span>published</span></div>
+            <figcaption><b>Fig. 1</b> <span class="fig-hint">Move your cursor across the page to edit the draft.</span></figcaption>
           </figure>
         </div>
       </section>
 
-      <!-- ===================== QUICKSTART ===================== -->
-      <section class="sheet sheet--graph" id="quickstart" aria-labelledby="quickstart-title">
-        <h2 id="quickstart-title"><a class="anchor" href="#quickstart" aria-hidden="true">#</a>Quickstart</h2>
-        <p class="sub">Working with me, in three steps. Takes about one sprint to see results.</p>
-        <ol class="steps">
-          <li class="step" data-rough>
-            <span class="step__n">1</span>
-            <h3>Hand me the mess</h3>
-            <p>Jira tickets, API specs, Slack threads, a half-built feature. I sit with engineers and PMs until the ambiguity is gone.</p>
-          </li>
-          <li class="step" data-rough>
-            <span class="step__n">2</span>
-            <h3>I test it first-hand</h3>
-            <p>Postman, the sandbox, the CLI. If a documented step is wrong, I find out before your users do.</p>
-          </li>
-          <li class="step" data-rough>
-            <span class="step__n">3</span>
-            <h3>You ship docs that hold up</h3>
-            <p>Structured, style-compliant and reviewed. Then I read the analytics and support tickets, and iterate.</p>
-          </li>
-        </ol>
-        <aside class="callout callout--tip" data-rough>
-          <p class="callout__k">Tip</p>
-          <p>I bring a founder's approach to content: find the unmet need, validate the technology, build systems that scale, ship, measure, iterate.</p>
-        </aside>
-      </section>
-
       <!-- ===================== DOCUTANIX ===================== -->
       <section class="sheet" id="docutanix" aria-labelledby="docutanix-title">
-        <p class="kicker">Guides · Case study · Nutanix, 2025</p>
-        <h2 id="docutanix-title"><a class="anchor" href="#docutanix" aria-hidden="true">#</a>Docutanix: an agent that drafts docs</h2>
+        <p class="kicker">Case study · Nutanix · 2025</p>
+        <h2 id="docutanix-title"><a class="anchor" href="#docutanix" aria-hidden="true">#</a>Docutanix writes the first draft. A person signs off.</h2>
         <p class="prose">
-          Support engineers kept losing time turning tickets into knowledge-base articles. I conceived, built and launched
-          <strong>Docutanix</strong>, a RAG-powered agent that turns raw drafts, Jira tickets and Slack threads into
-          <span data-annotate="highlight" data-color="#f8dc4c99">structured, style-compliant drafts</span>.
-          It's now Nutanix's most-used internal drafting agent.
+          Support engineers were spending too long turning tickets into knowledge-base articles. I conceived, built and launched
+          Docutanix, a RAG-powered agent that turns raw drafts, Jira tickets and Slack threads into structured,
+          style-compliant drafts. I designed its content rules myself: the prompts, four embedded style guides,
+          what's internal versus customer-facing, and a mandatory human accuracy review.
         </p>
 
-        <div class="flow" role="img" aria-label="Pipeline: Jira and Slack context, retrieval with Glean, style rules, draft, human review.">
-          <div class="flow__box" data-rough><b>Jira + Slack</b><small>raw context</small></div>
-          <svg class="flow__arrow" viewBox="0 0 60 24" aria-hidden="true"><path d="M2 12 C 18 8, 36 16, 54 12 M54 12 l-9 -6 M54 12 l-8 7"/></svg>
-          <div class="flow__box" data-rough><b>Glean RAG</b><small>grounded sources</small></div>
-          <svg class="flow__arrow" viewBox="0 0 60 24" aria-hidden="true"><path d="M2 12 C 18 16, 36 8, 54 12 M54 12 l-9 -6 M54 12 l-8 7"/></svg>
-          <div class="flow__box" data-rough><b>Style rules</b><small>4 guides embedded</small></div>
-          <svg class="flow__arrow" viewBox="0 0 60 24" aria-hidden="true"><path d="M2 12 C 18 8, 36 16, 54 12 M54 12 l-9 -6 M54 12 l-8 7"/></svg>
-          <div class="flow__box flow__box--human" data-rough data-rough-fill="#cfe6a8"><b>Human review</b><small>accuracy check</small></div>
-        </div>
+        <dl class="stats">
+          <div><dt>Agent runs</dt><dd>10,000+</dd></div>
+          <div><dt>People using it</dt><dd>263</dd></div>
+          <div><dt>Minutes saved per draft</dt><dd>20–30</dd></div>
+        </dl>
 
-        <div class="docu">
-          <div class="stickies">
-            <div class="sticky sticky--yellow"><b>10,000+</b><span>agent runs</span></div>
-            <div class="sticky sticky--green"><b>263</b><span>people using it</span></div>
-            <div class="sticky sticky--pink"><b>20–30</b><span>minutes saved per draft</span></div>
-            <div class="sticky sticky--blue"><b>4</b><span>tools evaluated: Glean, Gemini, Agentforce, NXpert</span></div>
+        <figure class="flow-fig">
+          <div class="flow" role="img" aria-label="Pipeline: Jira and Slack context, retrieval with Glean, style rules, then human review.">
+            <div class="flow__box" data-rough><b>Jira + Slack</b><small>raw context</small></div>
+            <svg class="flow__arrow" viewBox="0 0 60 24" aria-hidden="true"><path d="M2 12 C 18 8, 36 16, 54 12 M54 12 l-9 -6 M54 12 l-8 7"/></svg>
+            <div class="flow__box" data-rough><b>Glean RAG</b><small>grounded sources</small></div>
+            <svg class="flow__arrow" viewBox="0 0 60 24" aria-hidden="true"><path d="M2 12 C 18 16, 36 8, 54 12 M54 12 l-9 -6 M54 12 l-8 7"/></svg>
+            <div class="flow__box" data-rough><b>Style rules</b><small>4 guides embedded</small></div>
+            <svg class="flow__arrow" viewBox="0 0 60 24" aria-hidden="true"><path d="M2 12 C 18 8, 36 16, 54 12 M54 12 l-9 -6 M54 12 l-8 7"/></svg>
+            <div class="flow__box flow__box--human" data-rough data-rough-stroke="#c2412d"><b>Human review</b><small>accuracy sign-off</small></div>
           </div>
+          <figcaption><b>Fig. 2</b> Every draft ends with a person. That's deliberate.</figcaption>
+        </figure>
 
-          <div class="codeblock">
-            <span class="tape tape--code" aria-hidden="true"></span>
-            <div class="codeblock__bar"><span>docutanix.yaml</span><button class="copy" type="button" data-copy-target="#code-docu">copy</button></div>
-<pre><code id="code-docu"><span class="c-k">agent</span>: docutanix
-<span class="c-k">inputs</span>: [jira, slack, raw_drafts]
-<span class="c-k">retrieval</span>: glean-rag    <span class="c-c"># cite sources</span>
-<span class="c-k">style_guides</span>: 4
-<span class="c-k">segregation</span>: internal | customer
-<span class="c-k">checks</span>:
-  - terminology
-  - hallucination
-<span class="c-k">review</span>: human        <span class="c-c"># always</span></code></pre>
-          </div>
-        </div>
-
-        <aside class="callout callout--warn" data-rough>
-          <p class="callout__k">Warning</p>
-          <p>AI drafts are only as good as their sources. While evaluating Glean, Gemini, Agentforce and NXpert, I logged hallucinations, factual errors and terminology drift, then took the evidence to Product and Engineering.</p>
+        <aside class="callout" aria-label="Note">
+          <p class="callout__k">Note</p>
+          <p>AI drafts are only as good as their sources. I also evaluated Glean, Gemini, Agentforce and NXpert against technical references, logged hallucinations, factual errors and terminology drift, and took the evidence to Product and Engineering.</p>
         </aside>
       </section>
 
       <!-- ===================== CHANGELOG ===================== -->
-      <section class="sheet sheet--plain" id="changelog" aria-labelledby="changelog-title">
+      <section class="sheet" id="changelog" aria-labelledby="changelog-title">
         <p class="kicker">Reference · CHANGELOG.md</p>
         <h2 id="changelog-title"><a class="anchor" href="#changelog" aria-hidden="true">#</a>Changelog</h2>
-        <p class="sub">All notable changes to my career. Format based on <em>Keep a Changelog</em>. Versions follow roles, not semver.</p>
+        <p class="sub">My career, in <em>Keep a Changelog</em> format. Newest first.</p>
 
-        <div class="releases">
-          <article class="release">
-            <span class="tape" aria-hidden="true"></span>
+        <ol class="releases">
+          <li class="release">
             <header class="release__head">
               <span class="ver">v5.0.0</span>
               <h3>Nutanix · Senior Technical Content Engineer</h3>
               <time>Jul 2025 – present</time>
-              <span class="stamp stamp--latest" aria-label="Latest release">Latest</span>
+              <span class="latest">latest</span>
             </header>
-            <p class="tag tag--added">Added</p>
-            <ul>
-              <li>Docutanix, a RAG drafting agent: 10,000+ runs across 263 people.</li>
-              <li>Four style guides and 30+ guidance modules in the first 90 days, for a 9,000+ article knowledge base.</li>
-              <li>Docs-as-Code proof of concept for Salesforce Knowledge, with feasibility and ROI.</li>
-              <li>AI-assisted Japanese localization strategy for 5,000+ KB articles that never touches code blocks.</li>
-              <li>NCP-MCI 6.10 certification.</li>
-            </ul>
-            <p class="tag tag--fixed">Fixed</p>
-            <ul>
-              <li>Critical errors in AOS 7.3+ encryption guidance linked to production incidents.</li>
-              <li>Hallucinations and terminology drift found while evaluating four AI assistants.</li>
-            </ul>
-            <p class="tag tag--improved">Improved</p>
-            <ul>
-              <li>Daily KB approval backlog: 250–300 → 50–100 articles.</li>
-              <li>KB case deflection: 44.42% → 47.76%.</li>
-            </ul>
-          </article>
+            <div class="release__body">
+              <p class="tag">Added</p>
+              <ul>
+                <li>Docutanix, a RAG drafting agent: 10,000+ runs across 263 people.</li>
+                <li>Four style guides and 30+ guidance modules in my first 90 days, for a 9,000+ article knowledge base.</li>
+                <li>Docs-as-Code proof of concept for Salesforce Knowledge, with feasibility and ROI.</li>
+                <li>Strategy for AI-assisted Japanese localization of 5,000+ KB articles, with safeguards that keep code blocks and CLI commands untouched.</li>
+              </ul>
+              <p class="tag">Fixed</p>
+              <ul>
+                <li>Critical errors in AOS 7.3+ encryption guidance linked to production incidents.</li>
+              </ul>
+              <p class="tag">Improved</p>
+              <ul>
+                <li>Approved 874 KB articles in H2 FY26, about 15% of published volume, with zero SLA misses.</li>
+                <li>Daily KB approval backlog: 250–300 → 50–100 articles.</li>
+                <li>KB case deflection: 44.42% → 47.76%.</li>
+              </ul>
+            </div>
+          </li>
 
-          <article class="release">
-            <span class="tape" aria-hidden="true"></span>
+          <li class="release">
             <header class="release__head">
               <span class="ver">v4.0.0</span>
               <h3>Gupshup · Lead Technical Writer (founding)</h3>
               <time>Apr 2022 – May 2025</time>
             </header>
-            <p class="tag tag--added">Added</p>
-            <ul>
-              <li>The technical writing function, from zero: strategy, IA, standards, templates, review process.</li>
-              <li>REST API references, SDK guides, OAuth, webhooks and event-driven messaging docs.</li>
-              <li>Docs-as-Code publishing with GitHub Actions, in step with releases.</li>
-            </ul>
-            <p class="tag tag--changed">Changed</p>
-            <ul>
-              <li>Rebuilt the ReadMe developer portal with a modular information architecture.</li>
-              <li>Promoted from Senior to Lead Technical Writer.</li>
-            </ul>
-            <p class="tag tag--improved">Improved</p>
-            <ul><li>Developer onboarding, using ReadMe Analytics, Hotjar and support patterns to find friction.</li></ul>
-          </article>
+            <div class="release__body">
+              <p class="tag">Added</p>
+              <ul>
+                <li>The technical writing function, from zero: content strategy, information architecture, standards, templates and reviews.</li>
+                <li>REST API references, SDK guides, OAuth, webhooks and event-driven messaging docs.</li>
+                <li>Docs-as-Code publishing with GitHub Actions, in step with releases.</li>
+              </ul>
+              <p class="tag">Changed</p>
+              <ul>
+                <li>Rebuilt the ReadMe developer portal with a modular information architecture.</li>
+                <li>Promoted from Senior to Lead Technical Writer.</li>
+              </ul>
+            </div>
+          </li>
 
-          <article class="release">
-            <span class="tape" aria-hidden="true"></span>
+          <li class="release">
             <header class="release__head">
               <span class="ver">v3.0.0</span>
               <h3>Rocket Software · Information Developer II</h3>
               <time>May 2021 – Apr 2022</time>
             </header>
-            <p class="tag tag--added">Added</p>
-            <ul><li>API, CLI and integration docs for hybrid-cloud products, plus architecture and sequence diagrams.</li></ul>
-            <p class="tag tag--changed">Changed</p>
-            <ul><li>Legacy information architecture → modular topics and context-sensitive help.</li></ul>
-          </article>
+            <div class="release__body">
+              <p class="tag">Added</p>
+              <ul><li>API, CLI and integration docs for hybrid-cloud products, plus architecture and sequence diagrams.</li></ul>
+            </div>
+          </li>
 
-          <article class="release">
-            <span class="tape" aria-hidden="true"></span>
+          <li class="release">
             <header class="release__head">
               <span class="ver">v2.0.0</span>
               <h3>Adobe · Social Support Consultant</h3>
               <time>Jul 2019 – May 2021</time>
             </header>
-            <p class="tag tag--added">Added</p>
-            <ul><li>Troubleshooting guides, how-tos, installation guides and release notes.</li></ul>
-            <p class="tag tag--improved">Improved</p>
-            <ul><li>Content priorities, driven by community feedback and recurring support issues.</li></ul>
-          </article>
+            <div class="release__body">
+              <p class="tag">Added</p>
+              <ul><li>Troubleshooting guides, how-tos and release notes, prioritized by community feedback.</li></ul>
+            </div>
+          </li>
 
-          <article class="release">
-            <span class="tape" aria-hidden="true"></span>
+          <li class="release">
             <header class="release__head">
               <span class="ver">v1.0.0</span>
               <h3>Amazon · CS Associate (E)</h3>
               <time>Oct 2017 – Jun 2019</time>
             </header>
-            <p class="tag tag--added">Initial release</p>
-            <ul><li>KB articles, FAQs and troubleshooting guides, including AWS IAM, EC2 and service limits.</li></ul>
+            <div class="release__body">
+              <p class="tag">Initial release</p>
+              <ul><li>KB articles, FAQs and troubleshooting guides covering AWS IAM, EC2 and service limits.</li></ul>
+            </div>
+          </li>
+        </ol>
+        <p class="footnote">Built on a B.Tech in Computer Science Engineering, West Bengal University of Technology.</p>
+      </section>
+
+      <!-- ===================== EDITING ===================== -->
+      <section class="sheet" id="editing" aria-labelledby="editing-title">
+        <p class="kicker">Editing · shown, not told</p>
+        <h2 id="editing-title"><a class="anchor" href="#editing" aria-hidden="true">#</a>One paragraph, edited</h2>
+        <p class="sub">This is how I review. Marks on the draft, the published version beside it.</p>
+
+        <div class="proof">
+          <article class="proof__page proof__page--draft" aria-label="Draft with edits">
+            <p class="proof__label">Draft · v1</p>
+            <p class="proof__text">
+              <span class="edit"><del data-annotate="strike-through">In order to utilize</del><ins>To use</ins></span> the API,
+              <span class="edit"><del data-annotate="strike-through">you will need to kindly first obtain</del><ins>get</ins></span>
+              an authentication token<span class="edit"><ins>&nbsp;first</ins></span>.<sup>1</sup>
+              If the token <span class="edit"><del data-annotate="strike-through">is expired</del><ins>expires</ins></span>,
+              <span class="edit"><del data-annotate="strike-through">an error may possibly occur</del><ins>the API returns 401</ins></span>.<sup>2</sup>
+              <span class="edit"><del data-annotate="strike-through">For more information, click here</del><ins>See Authentication</ins></span>.<sup>3</sup>
+            </p>
+            <ol class="proof__queries">
+              <li>Cut every word the reader doesn't need.</li>
+              <li>Which error? Name the condition and the result.</li>
+              <li>Link text should say where it goes.</li>
+            </ol>
           </article>
 
-          <article class="release release--pre">
-            <header class="release__head">
-              <span class="ver">v0.1.0</span>
-              <h3>B.Tech, Computer Science Engineering</h3>
-              <time>West Bengal University of Technology · CGPA 7.38</time>
-            </header>
+          <article class="proof__page proof__page--final" aria-label="Published version">
+            <p class="proof__label">Published · v2</p>
+            <p class="proof__text">To use the API, get an authentication token first. If the token expires, the API returns <code>401 Unauthorized</code>. See <a href="#editing">Authentication</a>.</p>
+            <p class="proof__diff"><b>31 → 20</b> words<br /><b>1 vague error → 1 status code</b></p>
           </article>
         </div>
+        <p class="footnote">Rules like these became four style guides and 30+ guidance modules at Nutanix.</p>
       </section>
 
       <!-- ===================== API ===================== -->
       <section class="sheet" id="api" aria-labelledby="api-title">
         <p class="kicker">Reference · API</p>
         <h2 id="api-title"><a class="anchor" href="#api" aria-hidden="true">#</a>Get skills</h2>
-        <p class="endpoint" data-rough><span class="method">GET</span><code>/api/skills.json</code></p>
-        <p class="prose">Returns the tools, platforms and techniques I work with, grouped by area. This is a real endpoint on this site, so you can call it.</p>
+        <p class="endpoint"><span class="method">GET</span><code>/api/skills.json</code></p>
+        <p class="prose">Returns the tools, platforms and techniques I work with, grouped by area. It's a real endpoint on this site, so you can call it.</p>
 
         <div class="api">
           <div class="api__fields">
             <h3 class="mini">Response fields</h3>
             <div class="table-wrap">
               <table class="fields">
-                <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+                <thead><tr><th scope="col">Field</th><th scope="col">Type</th><th scope="col">Description</th></tr></thead>
                 <tbody>
                   <tr><td><code>skills.writing</code></td><td>string[]</td><td>Doc types I produce.</td></tr>
                   <tr><td><code>skills.ai</code></td><td>string[]</td><td>RAG, prompts and LLM evaluation.</td></tr>
-                  <tr><td><code>skills.api_tooling</code></td><td>string[]</td><td>OpenAPI, Postman and friends.</td></tr>
+                  <tr><td><code>skills.api_tooling</code></td><td>string[]</td><td>OpenAPI, Postman and related tools.</td></tr>
                   <tr><td><code>skills.docs_as_code</code></td><td>string[]</td><td>Git-based publishing.</td></tr>
                   <tr><td><code>skills.platforms</code></td><td>string[]</td><td>CMSs and authoring tools.</td></tr>
                   <tr><td><code>skills.cloud</code></td><td>string[]</td><td>Infrastructure I document.</td></tr>
@@ -323,20 +282,19 @@
             </div>
           </div>
 
-          <div class="codeblock codeblock--tabs">
-            <span class="tape tape--code" aria-hidden="true"></span>
+          <div class="codeblock">
             <div class="codeblock__bar">
               <div class="tabs" role="tablist" aria-label="Example">
                 <button role="tab" id="tab-res" aria-selected="true" aria-controls="panel-res" type="button">Response</button>
                 <button role="tab" id="tab-curl" aria-selected="false" aria-controls="panel-curl" type="button" tabindex="-1">cURL</button>
               </div>
-              <button class="copy" type="button" data-copy-target="[role=tabpanel]:not([hidden]) code">copy</button>
+              <button class="copy" type="button" data-copy-target="[role=tabpanel]:not([hidden]) code">Copy</button>
             </div>
             <div class="status" aria-live="polite"><span class="status__dot"></span><span class="status__text">200 OK · example</span></div>
             <div role="tabpanel" id="panel-res" aria-labelledby="tab-res">
 <pre><code id="api-out">{
   <span class="c-k">"skills"</span>: {
-    <span class="c-k">"writing"</span>: [<span class="c-s">"API references"</span>, <span class="c-s">"SDK guides"</span>, <span class="c-s">"tutorials"</span>, …],
+    <span class="c-k">"writing"</span>: [<span class="c-s">"API references"</span>, <span class="c-s">"SDK guides"</span>, …],
     <span class="c-k">"ai"</span>: [<span class="c-s">"RAG workflows"</span>, <span class="c-s">"prompt engineering"</span>, …],
     <span class="c-k">"api_tooling"</span>: [<span class="c-s">"OpenAPI/Swagger"</span>, <span class="c-s">"Postman"</span>, …],
     <span class="c-k">"docs_as_code"</span>: [<span class="c-s">"Git"</span>, <span class="c-s">"GitHub Actions"</span>, …]
@@ -348,72 +306,8 @@
 <pre><code>curl -s https://devdocswriter.github.io/Portfolio/api/skills.json \
   | jq '.skills.ai'</code></pre>
             </div>
-            <button class="btn btn--try" type="button" id="try-it" data-rough data-rough-fill="#2c4f9e">Try it ▸</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== STYLE GUIDE ===================== -->
-      <section class="sheet sheet--dots" id="style-guide" aria-labelledby="style-title">
-        <p class="kicker">Guides · Editorial</p>
-        <h2 id="style-title"><a class="anchor" href="#style-guide" aria-hidden="true">#</a>Style guide (excerpt)</h2>
-        <p class="sub">I've written four style guides and 30+ guidance modules. Here are three rules I enforce in every review.</p>
-
-        <div class="rules">
-          <div class="rule">
-            <div class="card card--do" data-rough><span class="verdict">✓ Do</span><p>Select <b>Save</b>.</p></div>
-            <div class="card card--dont" data-rough><span class="verdict">✗ Don't</span><p><span data-annotate="strike-through" data-color="#c2412d">Kindly proceed to click on the Save button in order to save your changes.</span></p></div>
-            <p class="why">Cut every word the reader doesn't need.</p>
-          </div>
-          <div class="rule">
-            <div class="card card--do" data-rough><span class="verdict">✓ Do</span><p>If the token expires, the API returns <code>401 Unauthorized</code>.</p></div>
-            <div class="card card--dont" data-rough><span class="verdict">✗ Don't</span><p><span data-annotate="strike-through" data-color="#c2412d">An error may possibly occur in some cases.</span></p></div>
-            <p class="why">Be specific. Name the condition and the result.</p>
-          </div>
-          <div class="rule">
-            <div class="card card--do" data-rough><span class="verdict">✓ Do</span><p>Read the <u>authentication guide</u>.</p></div>
-            <div class="card card--dont" data-rough><span class="verdict">✗ Don't</span><p><span data-annotate="strike-through" data-color="#c2412d">For more info, click <u>here</u>.</span></p></div>
-            <p class="why">Link text should say where it goes. Screen readers depend on it.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== BY THE NUMBERS ===================== -->
-      <section class="sheet sheet--plain" id="numbers" aria-labelledby="numbers-title">
-        <p class="kicker">Guides · Impact</p>
-        <h2 id="numbers-title"><a class="anchor" href="#numbers" aria-hidden="true">#</a>By the numbers</h2>
-        <p class="sub">Itemized from the Nutanix knowledge-base desk, H2 FY26.</p>
-
-        <div class="numbers">
-          <div class="receipt">
-            <p class="receipt__head">KB DESK · NUTANIX<br /><small>H2 FY26 · Bengaluru</small></p>
-            <dl class="receipt__rows">
-              <div><dt>KB articles approved</dt><dd>874</dd></div>
-              <div><dt>Share of published volume</dt><dd>~15%</dd></div>
-              <div><dt>Individual SLA misses</dt><dd>0</dd></div>
-              <div><dt>Daily approval backlog</dt><dd>250–300 → 50–100</dd></div>
-              <div><dt>KB case deflection</dt><dd>44.42% → 47.76%</dd></div>
-              <div><dt>Customer-facing KB coverage</dt><dd>60.94%</dd></div>
-              <div><dt>Serviceability tickets resolved</dt><dd>168</dd></div>
-              <div><dt>KB feedback records</dt><dd>50+</dd></div>
-              <div><dt>TOI packages reviewed (in SLA)</dt><dd>15</dd></div>
-            </dl>
-            <p class="receipt__total"><span>TOTAL</span><span>clearer docs</span></p>
-            <p class="receipt__foot">thank you · come again</p>
-          </div>
-
-          <div class="numbers__side">
-            <div class="ticket">
-              <div class="ticket__main"><p class="ticket__k">Admit one</p><p class="ticket__t">9,000+ articles</p><p class="ticket__s">governed by standards I wrote</p></div>
-              <div class="ticket__stub"><span>No.</span><b>9000</b></div>
-            </div>
-            <div class="ticket ticket--blue">
-              <div class="ticket__main"><p class="ticket__k">Localization POC</p><p class="ticket__t">5,000+ KBs</p><p class="ticket__s">Japanese, code blocks untouched</p></div>
-              <div class="ticket__stub"><span>No.</span><b>5000</b></div>
-            </div>
-            <div class="tally">
-              <svg viewBox="0 0 150 60" aria-hidden="true"><path d="M10 8 L12 52 M24 7 L25 53 M38 8 L37 52 M52 7 L53 53 M2 40 L62 18 M84 8 L85 52 M98 7 L97 53 M112 8 L113 52 M126 7 L126 53"/></svg>
-              <p>9 years in documentation</p>
+            <div class="codeblock__foot">
+              <button class="btn btn--paper" type="button" id="try-it" data-rough data-rough-fill="#faf7f0">Try it ▸</button>
             </div>
           </div>
         </div>
@@ -421,62 +315,57 @@
 
       <!-- ===================== SAMPLES ===================== -->
       <section class="sheet" id="samples" aria-labelledby="samples-title">
-        <p class="kicker">Reference · Portfolio</p>
+        <p class="kicker">Reference · Published work</p>
         <h2 id="samples-title"><a class="anchor" href="#samples" aria-hidden="true">#</a>Writing samples</h2>
-        <p class="sub">Published work you can read today. Each opens in a new tab.</p>
-        <div class="samples">
-          <a class="index-card" href="https://docs.gupshup.io/reference/msg" target="_blank" rel="noopener">
-            <span class="ribbon" aria-hidden="true"></span>
-            <span class="index-card__k">API documentation</span>
-            <span class="index-card__t">Gupshup Messaging API reference</span>
-            <span class="index-card__d">Endpoints, auth, payloads and error handling.</span>
-            <span class="index-card__go">docs.gupshup.io ↗</span>
-          </a>
-          <a class="index-card" href="https://docs.gupshup.io/docs/overview" target="_blank" rel="noopener">
-            <span class="ribbon ribbon--blue" aria-hidden="true"></span>
-            <span class="index-card__k">Product documentation</span>
-            <span class="index-card__t">Gupshup platform overview</span>
-            <span class="index-card__d">Modular IA for a conversational AI platform.</span>
-            <span class="index-card__go">docs.gupshup.io ↗</span>
-          </a>
-          <a class="index-card" href="https://docs.gupshup.io/changelog/whatsapp-self-serve-platform" target="_blank" rel="noopener">
-            <span class="ribbon ribbon--green" aria-hidden="true"></span>
-            <span class="index-card__k">Release notes</span>
-            <span class="index-card__t">WhatsApp Self-Serve changelog</span>
-            <span class="index-card__d">Release communication at Agile speed.</span>
-            <span class="index-card__go">docs.gupshup.io ↗</span>
-          </a>
-        </div>
+        <p class="sub">Live docs I wrote at Gupshup. Each opens in a new tab.</p>
+        <ul class="samples">
+          <li><a class="sample" href="https://docs.gupshup.io/reference/msg" target="_blank" rel="noopener">
+            <span class="sample__k">API reference</span>
+            <span class="sample__t">Messaging API</span>
+            <span class="sample__d">Endpoints, authentication, payloads and error handling.</span>
+            <span class="sample__u">docs.gupshup.io/reference/msg ↗</span>
+          </a></li>
+          <li><a class="sample" href="https://docs.gupshup.io/docs/overview" target="_blank" rel="noopener">
+            <span class="sample__k">Product docs</span>
+            <span class="sample__t">Platform overview</span>
+            <span class="sample__d">Modular information architecture for a conversational AI platform.</span>
+            <span class="sample__u">docs.gupshup.io/docs/overview ↗</span>
+          </a></li>
+          <li><a class="sample" href="https://docs.gupshup.io/changelog/whatsapp-self-serve-platform" target="_blank" rel="noopener">
+            <span class="sample__k">Release notes</span>
+            <span class="sample__t">WhatsApp Self-Serve changelog</span>
+            <span class="sample__d">Release communication that keeps pace with Agile sprints.</span>
+            <span class="sample__u">docs.gupshup.io/changelog ↗</span>
+          </a></li>
+        </ul>
       </section>
 
       <!-- ===================== CONTACT ===================== -->
-      <section class="sheet sheet--letter" id="contact" aria-labelledby="contact-title">
-        <p class="kicker">Support · Contact</p>
+      <section class="sheet sheet--ruled" id="contact" aria-labelledby="contact-title">
+        <p class="kicker">Contact</p>
         <h2 id="contact-title"><a class="anchor" href="#contact" aria-hidden="true">#</a>Dear hiring team,</h2>
         <div class="letter">
-          <p>If your product is powerful but hard to explain, I'd like to help. I'm open to senior and founding technical writing roles, especially in AI, developer platforms and cloud.</p>
-          <p>The fastest way to reach me is email.</p>
-          <p class="sign">— Shailesh <svg viewBox="0 0 160 20" aria-hidden="true"><path d="M2 14 C 40 4, 80 18, 120 8 S 150 10, 158 6"/></svg></p>
+          <p>If your product is powerful but hard to explain, I'd like to help. I'm looking for senior and founding technical writing roles, especially in AI, developer platforms and cloud.</p>
+          <p class="sign">Shailesh</p>
+        </div>
+
+        <div class="contact__cta">
+          <a class="btn btn--ink" href="mailto:shajha1309@gmail.com" data-rough data-rough-fill="#2a2420">Email me</a>
+          <span class="contact__addr">shajha1309@gmail.com</span>
+          <button class="copy copy--light" type="button" data-copy-text="shajha1309@gmail.com">Copy</button>
         </div>
 
         <ul class="contact-list">
-          <li><span class="contact-list__k">Email</span><a href="mailto:shajha1309@gmail.com">shajha1309@gmail.com</a><button class="copy copy--light" type="button" data-copy-text="shajha1309@gmail.com">copy</button></li>
           <li><span class="contact-list__k">Phone</span><a href="tel:+919513217674">+91 951-3217-674</a></li>
           <li><span class="contact-list__k">LinkedIn</span><a href="https://www.linkedin.com/in/jhashail/" target="_blank" rel="noopener">linkedin.com/in/jhashail ↗</a></li>
           <li><span class="contact-list__k">Résumé</span><a href="assets/Shailesh_Jha_Resume.pdf" download>Shailesh_Jha_Resume.pdf ↓</a></li>
         </ul>
-
-        <div class="helpful" data-rough>
-          <p>Was this page helpful?</p>
-          <a class="btn btn--small" href="mailto:shajha1309@gmail.com?subject=Your%20portfolio%20was%20helpful" data-rough>👍 Yes, let's talk</a>
-          <a class="btn btn--small" href="mailto:shajha1309@gmail.com?subject=Feedback%20on%20your%20portfolio" data-rough>👎 Tell me why</a>
-        </div>
       </section>
 
       <footer class="foot">
-        <a href="https://github.com/devdocswriter/Portfolio/edit/main/index.html" target="_blank" rel="noopener">✎ Edit this page on GitHub</a>
+        <a href="https://github.com/devdocswriter/Portfolio/edit/main/index.html" target="_blank" rel="noopener">Edit this page on GitHub</a>
         <span>Last updated 12 Nov 2026 · © <span id="year">2026</span> Shailesh Jha</span>
-        <span>Drawn with <a href="https://roughjs.com" target="_blank" rel="noopener">rough.js</a>. Paper style inspired by <a href="https://github.com/kevintngo/looseleaf" target="_blank" rel="noopener">Looseleaf</a>.</span>
+        <span>Drawn with <a href="https://roughjs.com" target="_blank" rel="noopener">rough.js</a></span>
       </footer>
     </main>
   </div>
@@ -485,7 +374,7 @@
   <dialog class="palette" id="palette" aria-label="Search docs">
     <form method="dialog" class="palette__form">
       <label class="sr" for="palette-input">Search docs</label>
-      <input id="palette-input" type="search" placeholder="Search docs… try “API” or “Gupshup”" autocomplete="off" />
+      <input id="palette-input" type="search" placeholder="Search docs, e.g. “API” or “Gupshup”" autocomplete="off" />
       <ul class="palette__list" id="palette-list" role="listbox" aria-label="Results"></ul>
       <p class="palette__hint"><kbd>↑</kbd><kbd>↓</kbd> to move · <kbd>Enter</kbd> to open · <kbd>Esc</kbd> to close</p>
     </form>

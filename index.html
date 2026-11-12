@@ -34,41 +34,48 @@
   </header>
 
   <main>
-    <!-- ============ HERO (pinned 3D doc stack) ============ -->
+    <!-- ============ HERO (cursor-scrubbed image sequence: Code → Clarity) ============ -->
     <section class="hero" id="hero">
-      <div class="hero__sticky">
-        <div class="hero__mesh" aria-hidden="true">
-          <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
-        </div>
+      <div class="hero__mesh" aria-hidden="true">
+        <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+      </div>
 
-        <div class="hero__copy">
-          <p class="eyebrow reveal-up">Senior Technical Content Engineer · Bengaluru</p>
-          <h1 class="hero__title">
-            <span class="line"><span class="word">Shailesh</span> <span class="word">Jha.</span></span>
-          </h1>
-          <p class="hero__sub reveal-up">I turn complex <em>AI, cloud &amp; API</em> products<br class="br-d" /> into documentation people trust.</p>
-        </div>
+      <div class="hero__inner">
+        <h1 class="hero__id reveal-up">
+          <span class="hero__name">Shailesh Jha</span>
+          <span class="hero__role">Senior Technical Content Engineer · Bengaluru</span>
+        </h1>
 
-        <div class="stage" aria-hidden="true">
-          <div class="stack">
-            <article class="sheet s1"><header><i></i><i></i><i></i><b>openapi.yaml</b></header>
-              <pre><span class="k">paths</span>:
-  <span class="s">/v1/messages</span>:
-    <span class="k">post</span>:
-      summary: Send a message
-      security: [ oauth2 ]</pre></article>
-            <article class="sheet s2"><header><i></i><i></i><i></i><b>KB-18342.md</b></header>
-              <h4>Resolving encryption key rotation on AOS 7.3+</h4><p class="ln w90"></p><p class="ln w70"></p><p class="ln w80"></p><p class="tag">Reviewed · Style-compliant</p></article>
-            <article class="sheet s3"><header><i></i><i></i><i></i><b>style-guide/voice.md</b></header>
-              <h4>Voice &amp; Tone</h4><p class="ln w60"></p><p class="ln w90"></p><p class="ln w50"></p><p class="ln w75"></p></article>
-            <article class="sheet s4"><header><i></i><i></i><i></i><b>docutanix · agent</b></header>
-              <div class="chat"><span class="me">Draft a KB from JIRA-4471</span><span class="ai">Retrieving context from 12 Slack threads… ✓<br/>Applying style rules… ✓<br/>Draft ready for human review.</span></div></article>
-            <article class="sheet s5"><header><i></i><i></i><i></i><b>CHANGELOG.md</b></header>
-              <h4>Release notes · v2.11</h4><p class="ln w80"></p><p class="ln w65"></p><p class="ln w85"></p></article>
+        <div class="hero__stage">
+          <p class="hero__word hero__word--in">
+            <span class="hero__label">input</span>
+            <span class="hero__big mono">Code</span>
+            <span class="hero__note">Jira tickets, API specs,<br />Slack threads</span>
+          </p>
+
+          <div class="hero__seq">
+            <canvas class="hero__canvas" width="800" height="800" role="img"
+              aria-label="Scattered code characters assembling into a clean API documentation page titled Send a message."></canvas>
           </div>
+
+          <p class="hero__word hero__word--out">
+            <span class="hero__label">output</span>
+            <span class="hero__big serif">Clarity</span>
+            <span class="hero__note">Verified docs<br />people trust</span>
+          </p>
         </div>
 
-        <div class="scroll-hint" aria-hidden="true"><span></span>Scroll</div>
+        <p class="hero__sub reveal-up">Nine years turning complex <em>AI, cloud &amp; API</em> products into documentation developers can act on.</p>
+
+        <div class="hero__cta reveal-up">
+          <a class="btn btn--primary magnetic" href="#docutanix">See the work</a>
+          <a class="btn magnetic" href="#contact">Get in touch</a>
+        </div>
+
+        <figure class="hero__fig reveal-up">
+          <div class="scrub" aria-hidden="true"><span class="scrub__code">Code</span><span class="scrub__track"><i></i></span><span class="scrub__clar">Clarity</span></div>
+          <figcaption><b>Fig. 1</b> <span class="fig-hint">Move your cursor from Code to Clarity.</span></figcaption>
+        </figure>
       </div>
     </section>
 

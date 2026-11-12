@@ -5,7 +5,7 @@ A single-page, Apple-inspired portfolio with scroll-driven 3D effects. Plain HTM
 ## What's inside
 | Section | Effect |
 |---|---|
-| Hero | Pinned 3D "document stack" that tilts, explodes into layers, then focuses on the AI agent card as you scroll |
+| Hero | **Code → Clarity**: a cursor-scrubbed image sequence. Scattered code characters assemble into a finished API doc page as the cursor moves from left to right (drag on touch screens) |
 | Manifesto | Apple-style word-by-word text reveal tied to scroll |
 | Docutanix | Pinned 4-step walkthrough with a 3D device mock, live pipeline and terminal |
 | Impact | Bento grid with count-up stats, pointer-tracked 3D tilt and spotlight |
@@ -33,6 +33,24 @@ Also included: Lenis smooth scrolling, a native CSS `animation-timeline: scroll(
 - Stat numbers use `data-count="…"` (with `data-decimals` for decimals).
 - Replace `assets/Shailesh_Jha_Resume.pdf` to update the downloadable résumé.
 - Colors and fonts are CSS variables at the top of `assets/css/style.css`.
+
+## How the hero works
+The hero isn't real-time 3D. It's 60 pre-rendered WebP frames in `assets/hero/`, drawn to a `<canvas>`. The cursor's horizontal position picks the frame, the same way you'd scrub a video. Frames load ends-first, then coarse-to-fine, so the effect works before every frame has arrived.
+
+To regenerate the frames (for example, to change the doc text on the page):
+```bash
+cd tools/hero-render
+npm i three@0.169.0 playwright
+python3 -m http.server 8777 &
+node run.js ../../assets/hero 60
+```
+Edit the `LINES` array in `tools/hero-render/render.html` to change what the page says.
+
+To use your own AI-generated video instead, export it as frames named `000.webp` to `059.webp`:
+```bash
+ffmpeg -i hero.mp4 -vf "fps=60/DURATION,scale=800:-1" -c:v libwebp -quality 70 -start_number 0 assets/hero/%03d.webp
+```
+Replace `DURATION` with the clip length in seconds.
 
 ## Preview locally
 ```bash

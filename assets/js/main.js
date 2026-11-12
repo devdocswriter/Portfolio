@@ -20,6 +20,108 @@
     });
   });
 
+  /* ---------- HERO: cursor-scrubbed image sequence (Code -> Clarity) ----------
+     60 pre-rendered frames (see tools/hero-render). Cursor X picks the frame,
+     like scrubbing a video. Works without GSAP. */
+  (function heroScrub() {
+    const hero = $(".hero");
+    const canvas = $(".hero__canvas");
+    if (!hero || !canvas) return;
+    const ctx = canvas.getContext("2d");
+    const N = 60;
+    const src = (i) => `assets/hero/${String(i).padStart(3, "0")}.webp`;
+    const frames = new Array(N);
+    let cur = 0, target = 0, last = -1, user = false, visible = true, raf = 0;
+
+    const draw = () => {
+      const want = Math.round(cur * (N - 1));
+      // nearest frame that has finished loading
+      let idx = -1;
+      for (let d = 0; d < N && idx < 0; d++) {
+        if (frames[want - d] && frames[want - d].ok) idx = want - d;
+        else if (frames[want + d] && frames[want + d].ok) idx = want + d;
+      }
+      if (idx < 0 || idx === last) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(frames[idx].img, 0, 0, canvas.width, canvas.height);
+      last = idx;
+    };
+    const setP = () => hero.style.setProperty("--p", cur.toFixed(3));
+
+    const load = (i) => new Promise((res) => {
+      if (frames[i]) return res();
+      const img = new Image();
+      frames[i] = { img, ok: false };
+      img.decoding = "async";
+      img.onload = () => { frames[i].ok = true; res(); };
+      img.onerror = res;
+      img.src = src(i);
+    });
+
+    if (reduced) {
+      load(N - 1).then(() => { cur = 1; setP(); draw(); });
+      return;
+    }
+
+    const tick = () => {
+      raf = 0;
+      cur += (target - cur) * 0.14;
+      if (Math.abs(target - cur) < 0.0005) cur = target;
+      setP(); draw();
+      if (cur !== target && visible) raf = requestAnimationFrame(tick);
+    };
+    const go = () => { if (!raf && visible) raf = requestAnimationFrame(tick); };
+
+    // Load the two ends first, then a coarse pass, then fill the gaps.
+    const order = [0, N - 1];
+    for (const step of [12, 6, 3, 1]) for (let i = 0; i < N; i += step) if (!order.includes(i)) order.push(i);
+    load(0).then(draw);
+    (async () => {
+      for (const i of order) {
+        await load(i);
+        if (Math.abs(i - cur * (N - 1)) < 2) { last = -1; draw(); }
+      }
+    })();
+
+    // Intro: assemble the page once, then hand control to the visitor.
+    const introStart = performance.now() + 500;
+    const intro = (t) => {
+      if (user) return;
+      const k = Math.min(1, Math.max(0, (t - introStart) / 2600));
+      target = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+      go();
+      if (k < 1) requestAnimationFrame(intro);
+    };
+    requestAnimationFrame(intro);
+
+    const clamp01 = (v) => Math.min(1, Math.max(0, v));
+    if (canHover) {
+      window.addEventListener("pointermove", (e) => {
+        if (!visible) return;
+        user = true;
+        target = clamp01((e.clientX - innerWidth * 0.12) / (innerWidth * 0.76));
+        go();
+      }, { passive: true });
+    } else {
+      const hint = $(".fig-hint");
+      if (hint) hint.textContent = "Drag the figure from Code to Clarity.";
+      let x0 = null, t0 = 0;
+      canvas.addEventListener("pointerdown", (e) => { x0 = e.clientX; t0 = target; user = true; });
+      window.addEventListener("pointermove", (e) => {
+        if (x0 === null) return;
+        target = clamp01(t0 + (e.clientX - x0) / canvas.clientWidth);
+        go();
+      }, { passive: true });
+      const end = () => { x0 = null; };
+      window.addEventListener("pointerup", end);
+      window.addEventListener("pointercancel", end);
+    }
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) go(); }).observe(hero);
+    }
+  })();
+
   /* ---------- Split manifesto into words ---------- */
   const manifesto = $("[data-split]");
   if (manifesto) {
@@ -43,7 +145,6 @@
     root.classList.add("no-gsap");
     words.forEach((w) => w.classList.add("on"));
     finalizeCounters();
-    $$(".sheet").forEach((s, i) => s.style.setProperty("--z", i * 40));
     $$(".step").forEach((s) => s.classList.add("is-active"));
     return;
   }
@@ -54,7 +155,6 @@
     root.classList.add("reduced", "no-gsap");
     words.forEach((w) => w.classList.add("on"));
     finalizeCounters();
-    $$(".sheet").forEach((s, i) => s.style.setProperty("--z", i * 40));
     $$(".step, .node, .term .t").forEach((s) => s.classList.add("is-active", "on"));
     return;
   }
@@ -101,41 +201,18 @@
     window.addEventListener("pointermove", (e) => { gx(e.clientX); gy(e.clientY); });
   }
 
-  /* ---------- HERO: intro + 3D doc stack scrubbed on scroll ---------- */
-  const heroIntro = gsap.timeline({ defaults: { ease: "expo.out" } });
-  heroIntro
-    .from(".hero__title .word", { yPercent: 110, rotate: 4, duration: 1.4, stagger: 0.12 })
-    .from(".hero__copy .reveal-up", { y: 30, opacity: 0, duration: 1.2, stagger: 0.1 }, "-=1.1")
-    .from(".nav", { y: -40, opacity: 0, duration: 1 }, "-=1")
-    .from(".scroll-hint", { opacity: 0, duration: 1 }, "-=.6");
+  /* ---------- HERO intro ---------- */
+  gsap.timeline({ defaults: { ease: "expo.out" } })
+    .from(".nav", { y: -40, opacity: 0, duration: 1 })
+    .from(".hero__word--in", { x: -60, opacity: 0, duration: 1.4, clearProps: "transform,opacity" }, 0.1)
+    .from(".hero__word--out", { x: 60, opacity: 0, duration: 1.4, clearProps: "transform,opacity" }, 0.1)
+    .from(".hero .reveal-up", { y: 30, opacity: 0, duration: 1.2, stagger: 0.08 }, 0.2);
 
-  const sheets = $$(".sheet");
-  const stack = $(".stack");
-  gsap.set(stack, { opacity: 0, y: "35vh", rotateX: 0, rotateZ: 0, scale: 0.55 });
-  gsap.set(sheets, { z: 0 });
-
-  const heroTl = gsap.timeline({
-    defaults: { ease: "none" },
-    scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom bottom", scrub: 1 },
+  // hero content drifts back as you scroll away
+  gsap.to(".hero__inner", {
+    yPercent: -8, opacity: 0.2, scale: 0.96, ease: "none",
+    scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
   });
-
-  heroTl
-    // copy recedes into depth
-    .to(".hero__copy", { scale: 0.82, opacity: 0, y: "-12vh", filter: "blur(8px)", duration: 1 }, 0)
-    .to(".scroll-hint", { opacity: 0, duration: 0.3 }, 0)
-    // stack rises and tilts into isometric view
-    .to(stack, { opacity: 1, y: 0, rotateX: 58, rotateZ: -32, scale: 0.95, duration: 1 }, 0.1)
-    .to(sheets, { z: (i) => i * 55, duration: 1 }, 0.2)
-    // explode layers apart
-    .to(sheets, { z: (i) => i * 120 - 120, x: (i) => (i - 2) * 22, y: (i) => (i - 2) * -14, duration: 1.2 }, 1.1)
-    .to(stack, { rotateZ: -18, rotateX: 50, scale: 1, duration: 1.2 }, 1.1)
-    // focus: the AI agent sheet comes forward, others fall away
-    .to(stack, { rotateX: 0, rotateZ: 0, scale: 1.12, duration: 1.2 }, 2.3)
-    .to(sheets.filter((s) => !s.classList.contains("s4")), {
-      opacity: 0, z: (i) => -200 - i * 80, y: (i) => 60 + i * 30, duration: 1, stagger: 0.05,
-    }, 2.3)
-    .to(".s4", { z: 160, x: 0, y: 0, duration: 1.2 }, 2.3)
-    .to(stack, { opacity: 0, scale: 1.4, duration: 0.6 }, 3.4);
 
   /* ---------- Generic section reveals ---------- */
   $$(".section > .eyebrow, .display, .lede").forEach((el) => {

@@ -1,20 +1,23 @@
 # Shailesh Jha — Portfolio
 
-A single-page, Apple-inspired portfolio with scroll-driven 3D effects. Plain HTML/CSS/JS, so there's no build step and it's ready for GitHub Pages.
+A technical writer's portfolio, laid out as a documentation site drawn on paper. Plain HTML, CSS and JS, with no build step, ready for GitHub Pages.
 
 ## What's inside
-| Section | Effect |
+| Section | What it is |
 |---|---|
-| Hero | **Code → Clarity**: a cursor-scrubbed image sequence. Scattered code characters assemble into a finished API doc page as the cursor moves from left to right (drag on touch screens) |
-| Manifesto | Apple-style word-by-word text reveal tied to scroll |
-| Docutanix | Pinned 4-step walkthrough with a 3D device mock, live pipeline and terminal |
-| Impact | Bento grid with count-up stats, pointer-tracked 3D tilt and spotlight |
-| Journey | Horizontal scroll timeline; cards rotate in 3D as they pass the center |
-| Zero-to-one | Sticky stacking cards that scale back and dim as the next arrives |
-| Toolkit | Infinite marquees + capability cards |
-| Contact | Magnetic buttons, résumé download |
+| Overview | Ruled notebook page. A red-pen edit (~~jargon~~ → *context*), marker highlights and **Fig. 1**, a cursor-scrubbed figure where scattered code assembles into a reviewed doc page |
+| Quickstart | "Working with me" in three steps, on graph paper, with a Tip admonition |
+| Docutanix | Case study: hand-drawn pipeline, sticky-note stats, a YAML config and a Warning callout |
+| Changelog | Career history in *Keep a Changelog* format (Added / Fixed / Improved / Changed), one taped slip per role |
+| API: /skills | Skills as an API reference with a fields table, Response/cURL tabs and a **Try it** button that calls the real `api/skills.json` |
+| Style guide | Do / Don't cards with the Don'ts struck through in red |
+| By the numbers | Impact metrics itemized on a receipt, plus ticket stubs |
+| Writing samples | Index cards linking to published docs |
+| Contact | A letter, contact details and a "Was this page helpful?" widget |
 
-Also included: Lenis smooth scrolling, a native CSS `animation-timeline: scroll()` progress bar, a glass nav that hides on scroll, a cursor glow, film grain, and full `prefers-reduced-motion` and no-JS fallbacks.
+Docs chrome: sticky index-card table of contents with scrollspy, breadcrumbs, `#` heading anchors, a search palette (press `/` or Ctrl/⌘+K), copy buttons, and "Edit this page on GitHub".
+
+Hand-drawn lines come from [rough.js](https://roughjs.com) and [rough-notation](https://roughnotation.com). Buttons "boil" (redraw) on hover. The paper style is inspired by [Looseleaf](https://github.com/kevintngo/looseleaf). Everything respects `prefers-reduced-motion`, and the page is fully readable without JavaScript.
 
 ## Deploy to GitHub Pages
 1. Create a repo named **`<your-username>.github.io`** (gives you `https://<your-username>.github.io`), or any repo name (gives `https://<your-username>.github.io/<repo>`).
@@ -30,12 +33,13 @@ Also included: Lenis smooth scrolling, a native CSS `animation-timeline: scroll(
 
 ## Editing content
 - All text lives in `index.html`. Each section is marked with an `<!-- ===== -->` comment.
-- Stat numbers use `data-count="…"` (with `data-decimals` for decimals).
+- Skills shown by **Try it** come from `api/skills.json`.
+- Search entries live in the `INDEX` array in `assets/js/main.js`. Add one when you add a section.
 - Replace `assets/Shailesh_Jha_Resume.pdf` to update the downloadable résumé.
 - Colors and fonts are CSS variables at the top of `assets/css/style.css`.
 
-## How the hero works
-The hero isn't real-time 3D. It's 60 pre-rendered WebP frames in `assets/hero/`, drawn to a `<canvas>`. The cursor's horizontal position picks the frame, the same way you'd scrub a video. Frames load ends-first, then coarse-to-fine, so the effect works before every frame has arrived.
+## How Fig. 1 works
+The figure isn't real-time 3D. It's 60 pre-rendered WebP frames in `assets/hero/`, drawn to a `<canvas>`. The cursor's horizontal position picks the frame, the same way you'd scrub a video. Frames load ends-first, then coarse-to-fine, so the effect works before every frame has arrived.
 
 To regenerate the frames (for example, to change the doc text on the page):
 ```bash

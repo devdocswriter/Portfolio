@@ -1,0 +1,20 @@
+{
+  "name": "Shailesh Jha",
+  "role": "Senior Technical Content Engineer",
+  "experience_years": 9,
+  "location": "Bengaluru, India",
+  "skills": {
+    "writing": ["API references", "SDK guides", "tutorials", "quickstarts", "conceptual docs", "troubleshooting guides", "release notes", "information architecture"],
+    "ai": ["RAG workflows", "prompt engineering", "LLM output evaluation", "hallucination detection", "Glean AI agents", "Gemini", "Salesforce Agentforce", "NXpert"],
+    "api_tooling": ["REST", "OpenAPI/Swagger", "Postman", "Redoc", "Stoplight", "OAuth", "webhooks", "JSON", "YAML"],
+    "docs_as_code": ["Git", "GitHub Actions", "GitLab CI/CD", "Markdown", "Docusaurus", "ReadMe", "GitBook", "DITA/XML"],
+    "platforms": ["Salesforce Knowledge", "Confluence", "MadCap Flare", "Adobe FrameMaker", "Ixiasoft", "Zendesk Guide", "Jira"],
+    "cloud": ["AWS (IAM, EC2, S3)", "Nutanix AOS", "Prism Central", "Nutanix Cloud Clusters"],
+    "governance": ["style guides", "terminology", "accessibility (WCAG)", "content lifecycle", "editorial review"]
+  },
+  "certifications": ["Nutanix Certified Professional – Multicloud Infrastructure (NCP-MCI 6.10)"],
+  "contact": {
+    "email": "shajha1309@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/jhashail/"
+  }
+}

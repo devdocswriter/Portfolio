@@ -113,100 +113,196 @@
   }
 
   /* ---------------------------------------------------------
-     3. Fig. 1 — cursor-scrubbed image sequence
-        60 pre-rendered frames (tools/hero-render). Like scrubbing a video.
+     3. Fig. 1 — "How code becomes docs", a scrubbable journey.
+        One progress value p (0 → 1) drives four stages:
+          read      a scan line moves down the source
+          mark      highlights, circles, a strike and margin notes
+          structure doc headings appear, then each marked token
+                    flies into its slot in the doc
+          publish   draft → published, REVIEWED stamp
+        p comes from an intro autoplay, then the cursor (or a drag).
      --------------------------------------------------------- */
-  (function heroScrub() {
+  (function journey() {
     const fig = $(".fig");
-    const canvas = $(".hero__canvas");
-    if (!fig || !canvas) return;
-    const ctx = canvas.getContext("2d");
-    const N = 60;
-    const src = (i) => `assets/hero/${String(i).padStart(3, "0")}.webp`;
-    const frames = new Array(N);
-    let cur = 0, target = 0, last = -1, user = false, visible = true, raf = 0;
+    const J = $(".journey");
+    if (!fig || !J) return;
+    root.classList.add("js-journey");
 
-    const draw = () => {
-      const want = Math.round(cur * (N - 1));
-      let idx = -1;
-      for (let d = 0; d < N && idx < 0; d++) {
-        if (frames[want - d] && frames[want - d].ok) idx = want - d;
-        else if (frames[want + d] && frames[want + d].ok) idx = want + d;
-      }
-      if (idx < 0 || idx === last) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(frames[idx].img, 0, 0, canvas.width, canvas.height);
-      last = idx;
-    };
-    const setP = () => fig.style.setProperty("--p", cur.toFixed(3));
-    const load = (i) => new Promise((res) => {
-      if (frames[i]) return res();
-      const img = new Image();
-      frames[i] = { img, ok: false };
-      img.decoding = "async";
-      img.onload = () => { frames[i].ok = true; res(); };
-      img.onerror = res;
-      img.src = src(i);
+    const src = (k) => $(`[data-k="${k}"]`, J);
+    const slot = (k) => $(`.slot[data-t="${k}"]`, J);
+    const MARKS = [
+      { k: "ep", type: "highlight", color: "#f8dc4ccc", t: 0.2 },
+      { k: "auth", type: "circle", color: "#c2412d", t: 0.245 },
+      { k: "to", type: "underline", color: "#2c4f9e", t: 0.285 },
+      { k: "text", type: "underline", color: "#2c4f9e", t: 0.3 },
+      { k: "401", type: "box", color: "#c2412d", t: 0.34 },
+      { k: "ok", type: "highlight", color: "#cfe6a8", t: 0.38 },
+      { k: "cut", type: "strike-through", color: "#c2412d", t: 0.42 },
+    ];
+    const FLIGHTS = ["fn", "ep", "auth", "to", "text", "ok", "401"].map((k, i) => ({ k, t0: 0.5 + i * 0.048, dur: 0.12 }));
+    const T_HEADINGS = 0.47, T_PUBLISH = 0.9;
+
+    // rough-notation marks, shown/hidden as p crosses each threshold
+    const RNj = window.RoughNotation;
+    MARKS.forEach((m) => {
+      m.el = src(m.k);
+      m.note = $(`.jnote[data-for="${m.k}"]`, J);
+      m.a = RNj && m.el ? RNj.annotate(m.el, {
+        type: m.type, color: m.color, strokeWidth: m.type === "highlight" ? 1 : 1.8,
+        padding: m.type === "circle" ? 5 : 2, iterations: 1, animate: !reduced, animationDuration: 380,
+      }) : null;
     });
 
-    if (reduced) { load(N - 1).then(() => { cur = 1; setP(); draw(); }); return; }
+    // flyers: chips that carry a token from the code into the doc
+    FLIGHTS.forEach((f) => {
+      f.from = src(f.k); f.to = slot(f.k);
+      const el = document.createElement("span");
+      el.className = "jfly";
+      el.innerHTML = `<span class="jfly__a"></span><span class="jfly__b"></span>`;
+      el.firstChild.textContent = f.from.textContent;
+      el.lastChild.textContent = f.to.textContent.replace(/\s+/g, " ").trim();
+      J.appendChild(el);
+      f.el = el;
+    });
+
+    // margin notes sit level with the token they describe
+    const placeNotes = () => {
+      MARKS.forEach((m) => {
+        if (!m.note || !m.el) return;
+        const body = m.note.parentElement.getBoundingClientRect();
+        const r = m.el.getBoundingClientRect();
+        m.note.style.top = `${r.top - body.top + r.height / 2}px`;
+      });
+    };
+
+    const steps = $$(".jsteps li", J);
+    const scan = $(".jscan", J);
+    const codeCard = $(".jcard--code", J);
+    const state = $(".jstate", J);
+    const stamp = $(".jstamp", J);
+    const lines = 10;
+    const ease = (x) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
+    const clamp01 = (v) => Math.min(1, Math.max(0, v));
+
+    let cur = 0, target = 0, raf = 0, visible = true, user = false, introT = null;
+
+    const render = (p) => {
+      fig.style.setProperty("--p", p.toFixed(3));
+      const stage = p < 0.2 ? 0 : p < T_HEADINGS ? 1 : p < T_PUBLISH ? 2 : 3;
+      steps.forEach((s, i) => { s.classList.toggle("is-on", i === stage); s.classList.toggle("is-done", i < stage); });
+
+      // read: scan line walks the source
+      const sp = clamp01(p / 0.2);
+      scan.style.opacity = p < 0.2 ? 1 : 0;
+      scan.style.setProperty("--line", Math.min(lines - 1, Math.floor(sp * lines)));
+
+      // mark
+      MARKS.forEach((m) => {
+        const on = p >= m.t;
+        if (m.a) { if (on && !m.a.isShowing()) m.a.show(); else if (!on && m.a.isShowing()) m.a.hide(); }
+        if (m.note) m.note.classList.toggle("is-on", on);
+      });
+
+      // structure
+      J.classList.toggle("has-structure", p >= T_HEADINGS);
+      const jr = J.getBoundingClientRect();
+      FLIGHTS.forEach((f) => {
+        const k = clamp01((p - f.t0) / f.dur);
+        f.from.classList.toggle("is-sent", k > 0);
+        f.to.classList.toggle("is-filled", k >= 1);
+        const flying = k > 0 && k < 1;
+        f.el.classList.toggle("is-flying", flying);
+        if (!flying) return;
+        const a = f.from.getBoundingClientRect(), b = f.to.getBoundingClientRect();
+        const e = ease(k);
+        const x = (a.left + (b.left - a.left) * e) - jr.left;
+        const y = (a.top + (b.top - a.top) * e) - jr.top;
+        const arc = Math.sin(Math.PI * e) * Math.min(90, jr.width * 0.18);
+        f.el.style.transform = `translate(${x + arc}px, ${y}px) rotate(${Math.sin(Math.PI * e) * -4}deg)`;
+        f.el.style.setProperty("--swap", e);
+      });
+
+      // publish
+      const pub = p >= T_PUBLISH;
+      J.classList.toggle("is-published", pub);
+      state.textContent = pub ? "published" : "draft";
+      codeCard.classList.toggle("is-done", pub);
+    };
 
     const tick = () => {
       raf = 0;
-      cur += (target - cur) * 0.14;
-      if (Math.abs(target - cur) < 0.0005) cur = target;
-      setP(); draw();
+      cur += (target - cur) * 0.12;
+      if (Math.abs(target - cur) < 0.0006) cur = target;
+      render(cur);
       if (cur !== target && visible) raf = requestAnimationFrame(tick);
     };
     const go = () => { if (!raf && visible) raf = requestAnimationFrame(tick); };
 
-    const order = [0, N - 1];
-    for (const step of [12, 6, 3, 1]) for (let i = 0; i < N; i += step) if (!order.includes(i)) order.push(i);
-    load(0).then(draw);
-    (async () => {
-      for (const i of order) {
-        await load(i);
-        if (Math.abs(i - cur * (N - 1)) < 2) { last = -1; draw(); }
-      }
-    })();
+    if (reduced) {
+      cur = target = 1;
+      requestAnimationFrame(() => { placeNotes(); render(1); });
+      $(".fig-hint", fig).textContent = "";
+      $(".replay", fig).hidden = true;
+      return;
+    }
 
-    // Intro: the page assembles once, then the visitor takes over.
-    const introStart = performance.now() + 700;
-    const intro = (t) => {
-      if (user) return;
-      const k = Math.min(1, Math.max(0, (t - introStart) / 2800));
-      target = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
-      go();
-      if (k < 1) requestAnimationFrame(intro);
+    // intro: play the whole journey once, then hand over to the visitor
+    const playIntro = () => {
+      user = false;
+      cancelAnimationFrame(introT);
+      cur = target = 0; render(0);
+      const start = performance.now() + 500, D = 7000;
+      const step = (t) => {
+        if (user) return;
+        target = clamp01((t - start) / D);
+        go();
+        if (target < 1) introT = requestAnimationFrame(step);
+      };
+      introT = requestAnimationFrame(step);
     };
-    requestAnimationFrame(intro);
 
-    const clamp01 = (v) => Math.min(1, Math.max(0, v));
     const hero = $(".hero");
     if (canHover) {
       hero.addEventListener("pointermove", (e) => {
+        if (e.target.closest(".replay")) return;
         user = true;
         const r = hero.getBoundingClientRect();
-        target = clamp01((e.clientX - r.left - r.width * 0.08) / (r.width * 0.84));
+        target = clamp01((e.clientX - r.left - r.width * 0.1) / (r.width * 0.8));
         go();
       }, { passive: true });
     } else {
-      const hint = $(".fig-hint");
-      if (hint) hint.textContent = "Drag the figure to edit code into clarity.";
+      $(".fig-hint", fig).textContent = "Drag across the figure to scrub.";
       let x0 = null, t0 = 0;
-      canvas.addEventListener("pointerdown", (e) => { x0 = e.clientX; t0 = target; user = true; });
+      J.addEventListener("pointerdown", (e) => { x0 = e.clientX; t0 = target; user = true; });
       window.addEventListener("pointermove", (e) => {
         if (x0 === null) return;
-        target = clamp01(t0 + (e.clientX - x0) / canvas.clientWidth);
+        target = clamp01(t0 + (e.clientX - x0) / J.clientWidth);
         go();
       }, { passive: true });
       const end = () => { x0 = null; };
       window.addEventListener("pointerup", end);
       window.addEventListener("pointercancel", end);
     }
+    $(".replay", fig).addEventListener("click", playIntro);
+
+    const relayout = () => {
+      placeNotes();
+      MARKS.forEach((m) => { if (m.a && m.a.isShowing()) { m.a.hide(); m.a.show(); } });
+      render(cur);
+    };
+    window.addEventListener("resize", relayout);
+    if (document.fonts) document.fonts.ready.then(relayout);
+    placeNotes();
+    render(0);
+
+    let started = false;
     if ("IntersectionObserver" in window) {
-      new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) go(); }).observe(fig);
-    }
+      new IntersectionObserver(([e]) => {
+        visible = e.isIntersecting;
+        if (visible && !started) { started = true; playIntro(); }
+        if (visible) go();
+      }, { threshold: 0.25 }).observe(J);
+    } else { playIntro(); }
   })();
 
   /* ---------------------------------------------------------

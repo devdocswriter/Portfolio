@@ -5,7 +5,7 @@ A technical writer's portfolio, laid out as a documentation site drawn on paper.
 ## What's inside
 | Section | What it is |
 |---|---|
-| Overview | Ruled notebook page. A red-pen edit (~~jargon~~ → *context*), marker highlights and **Fig. 1**, a cursor-scrubbed figure where scattered code assembles into a reviewed doc page |
+| Overview | Ruled notebook page. A red-pen edit (~~jargon~~ → *context*), marker highlights and **Fig. 1**, a scrubbable illustration of how code becomes docs |
 | Quickstart | "Working with me" in three steps, on graph paper, with a Tip admonition |
 | Docutanix | Case study: hand-drawn pipeline, sticky-note stats, a YAML config and a Warning callout |
 | Changelog | Career history in *Keep a Changelog* format (Added / Fixed / Improved / Changed), one taped slip per role |
@@ -39,22 +39,14 @@ Hand-drawn lines come from [rough.js](https://roughjs.com) and [rough-notation](
 - Colors and fonts are CSS variables at the top of `assets/css/style.css`.
 
 ## How Fig. 1 works
-The figure isn't real-time 3D. It's 60 pre-rendered WebP frames in `assets/hero/`, drawn to a `<canvas>`. The cursor's horizontal position picks the frame, the same way you'd scrub a video. Frames load ends-first, then coarse-to-fine, so the effect works before every frame has arrived.
+Fig. 1 shows how code becomes docs, in four stages driven by one progress value (cursor position, a drag on touch screens, or the intro autoplay):
 
-To regenerate the frames (for example, to change the doc text on the page):
-```bash
-cd tools/hero-render
-npm i three@0.169.0 playwright
-python3 -m http.server 8777 &
-node run.js ../../assets/hero 60
-```
-Edit the `LINES` array in `tools/hero-render/render.html` to change what the page says.
+1. **Read:** a scan line moves down a real source file (`src/messages.ts`).
+2. **Mark:** rough-notation highlights, circles and underlines mark the endpoint, auth, parameters, error and success cases, with margin notes. The internal `queue.push` line is struck through and marked "internal, cut".
+3. **Structure:** the doc skeleton gets its headings, then each marked token flies into its slot (`sendMessage` → "Send a message", `401` → "401 token expired").
+4. **Publish:** the doc flips from draft to published and gets a REVIEWED stamp.
 
-To use your own AI-generated video instead, export it as frames named `000.webp` to `059.webp`:
-```bash
-ffmpeg -i hero.mp4 -vf "fps=60/DURATION,scale=800:-1" -c:v libwebp -quality 70 -start_number 0 assets/hero/%03d.webp
-```
-Replace `DURATION` with the clip length in seconds.
+It's plain HTML text, not images, so it stays sharp and is easy to edit. Change the code in the `.jcode` block and the doc in `.jdoc` in `index.html`. Each `data-k` token in the code flies to the `.slot` with the matching `data-t`. Timings live in the `MARKS` and `FLIGHTS` arrays in `assets/js/main.js`. With reduced motion, the finished state shows without animation.
 
 ## Preview locally
 ```bash

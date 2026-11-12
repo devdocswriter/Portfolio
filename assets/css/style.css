@@ -202,9 +202,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .crumbs [aria-current] { color: var(--ink); }
 
 /* ---------- hero ---------- */
-.hero__grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
+.hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
 .hero__copy { position: relative; min-width: 0; }
-.hero__name { margin: 0 0 14px; font: 800 clamp(48px, 7.4vw, 92px)/.98 var(--hand); letter-spacing: -.035em; }
+.hero__name { position: relative; margin: 0 0 14px; font: 800 clamp(48px, 6.8vw, 88px)/.98 var(--hand); letter-spacing: -.035em; }
 .hero__lede { margin: 0 0 22px; font: 600 clamp(22px, 2.8vw, 32px)/1.35 var(--hand); letter-spacing: -.01em; max-width: 24ch; }
 .edit { white-space: nowrap; }
 .edit del { text-decoration: none; color: var(--ink-soft); }
@@ -225,15 +225,68 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .meta dd { margin: 2px 0 0; font: 600 15px var(--hand); }
 
 .note { font: 700 24px/1 var(--pen); color: var(--blue); margin: 0; }
-.note--name { display: inline-block; margin-left: .4em; font-size: clamp(22px, 2.2vw, 28px); letter-spacing: 0; vertical-align: middle; transform: rotate(-6deg) translateY(-.2em); white-space: nowrap; }
+.note--name { position: absolute; right: 0; bottom: .45em; font-size: clamp(20px, 2vw, 26px); letter-spacing: 0; transform: rotate(-6deg); white-space: nowrap; }
 .arrow path, .flow__arrow path, .sign path, .tally path { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 
-/* the scrubbable figure */
-.fig { position: relative; margin: 0; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.fig__canvas { position: relative; width: 100%; max-width: 520px; aspect-ratio: 1; }
-.hero__canvas { width: 100%; height: 100%; display: block; cursor: ew-resize; touch-action: pan-y; }
-.fig figcaption { font-size: 14px; color: var(--pencil); text-align: center; }
+/* ---------- Fig. 1: how code becomes docs ---------- */
+.fig { position: relative; margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.journey { position: relative; width: 100%; max-width: 520px; display: grid; gap: 10px; container-type: inline-size; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.jcard { position: relative; background: var(--card); background-image: var(--noise); box-shadow: var(--shadow); transition: opacity .4s ease, filter .4s ease; }
+.jcard--code { transform: rotate(-.8deg); }
+.jcard--doc { transform: rotate(.6deg); }
+.jcard__bar { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 7px 12px; border-bottom: 1px dashed var(--pencil-mark); font: 400 clamp(10px, 2.5cqw, 12px) var(--mono); color: var(--pencil); }
+.jcard__tag { padding: 1px 7px; border-radius: 99px; background: var(--paper-shade); color: var(--ink-soft); }
+.jcard__body { position: relative; padding: 10px 12px 12px; }
+.jcode { margin: 0; font: 400 clamp(9.5px, 2.7cqw, 13px)/1.75 var(--mono); color: var(--ink); white-space: pre; overflow: hidden; }
+.jcode code { background: none; padding: 0; font-size: inherit; }
+.jcode .kw { color: var(--blue); }
+.jcode .dec { color: #a4502a; }
+.jcode .str { color: var(--green); }
+.jcode .fn { color: var(--ink); font-weight: 500; }
+.jcode .num { color: var(--red); }
+.jcode [data-k] { transition: opacity .3s ease; }
+.jcode [data-k].is-sent { opacity: .4; }
+.jscan { position: absolute; left: 6px; right: 6px; top: calc(10px + var(--line, 0) * 1.75 * clamp(9.5px, 2.7cqw, 13px)); height: calc(1.75 * clamp(9.5px, 2.7cqw, 13px)); background: color-mix(in srgb, var(--st-blue) 55%, transparent); border-radius: 3px; transition: top .12s linear, opacity .3s ease; pointer-events: none; }
+.jnote { position: absolute; right: 10px; transform: translateY(-50%) rotate(-4deg); font: 700 clamp(13px, 4cqw, 19px)/1 var(--pen); color: var(--blue); opacity: 0; transition: opacity .3s ease; white-space: nowrap; }
+.jnote--red { color: var(--red); }
+.jnote.is-on { opacity: 1; }
+.jcard--code.is-done { opacity: .62; filter: saturate(.6); }
+
+.jsteps { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; gap: 6px; font: 400 clamp(10px, 2.6cqw, 12px) var(--mono); color: var(--pencil); }
+.jsteps li { padding: 2px 8px; border-radius: 99px; transition: background .25s ease, color .25s ease; }
+.jsteps li + li::before { content: "→"; margin-right: 10px; color: var(--pencil-mark); }
+.jsteps li.is-done { color: var(--ink-soft); }
+.jsteps li.is-on { background: var(--hi); color: var(--ink); }
+
+.jdoc { display: grid; gap: 4px; font: 400 clamp(11px, 3cqw, 14px)/1.45 var(--body); }
+.jdoc p, .jdoc h3 { margin: 0; }
+.jdoc__title { font: 800 clamp(16px, 5cqw, 24px)/1.2 var(--hand); letter-spacing: -.01em; margin-bottom: 2px !important; }
+.jdoc__ep b { font: 500 .85em var(--mono); color: #fff; background: var(--green); padding: 1px 6px; border-radius: 3px; margin-right: 4px; }
+.jdoc__ep .slot__fill { font-family: var(--mono); font-size: .92em; }
+.jdoc__h { margin-top: 6px !important; font: 500 clamp(9px, 2.4cqw, 11px) var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--pencil); opacity: 0; transition: opacity .35s ease; }
+.jdoc__row code { font-size: .9em; }
+.jdoc .ok, .jdoc .err { font: 500 .9em var(--mono); margin-right: 6px; }
+.jdoc .ok { color: var(--green); } .jdoc .err { color: var(--red); }
+.slot { display: inline-block; position: relative; }
+.js-journey .slot__fill { opacity: 0; transition: opacity .25s ease; }
+.js-journey .slot { background: repeating-linear-gradient(90deg, var(--pencil-mark) 0 6px, transparent 6px 10px) left bottom / 100% 1.5px no-repeat; }
+.js-journey .slot.is-filled { background: none; }
+.js-journey .slot.is-filled .slot__fill { opacity: 1; }
+.journey.has-structure .jdoc__h, html:not(.js-journey) .jdoc__h { opacity: 1; }
+.jstamp { position: absolute; right: 12px; bottom: 14px; color: var(--green); font-size: clamp(10px, 2.8cqw, 13px); opacity: 0; transform: rotate(-10deg) scale(1.6); transition: opacity .25s ease, transform .35s cubic-bezier(.2, 1.6, .4, 1); }
+.journey.is-published .jstamp, html:not(.js-journey) .jstamp { opacity: .85; transform: rotate(-10deg) scale(1); }
+.journey.is-published .jstate { background: var(--st-green); color: var(--green); }
+
+.jfly { position: absolute; left: 0; top: 0; z-index: 5; display: grid; pointer-events: none; opacity: 0; padding: 1px 6px; border: 1.5px solid var(--ink); border-radius: 4px; background: var(--card); box-shadow: 0 8px 14px -8px rgba(58, 44, 30, .6); font: 500 clamp(9.5px, 2.7cqw, 13px)/1.5 var(--mono); white-space: nowrap; will-change: transform; }
+.jfly.is-flying { opacity: 1; }
+.jfly > span { grid-area: 1 / 1; transition: none; }
+.jfly__a { opacity: calc(1 - var(--swap, 0) * 2); }
+.jfly__b { opacity: calc(var(--swap, 0) * 2 - 1); font-family: var(--body); }
+
+.fig figcaption { max-width: 460px; font-size: 14px; line-height: 1.5; color: var(--pencil); text-align: center; }
 .fig figcaption b { font: 700 14px var(--hand); color: var(--ink); margin-right: 4px; }
+.replay { margin-left: 6px; padding: 2px 8px; min-height: 28px; border: 1px solid var(--pencil-mark); border-radius: 99px; background: transparent; font: 400 12px var(--mono); color: var(--ink-soft); cursor: pointer; }
+.replay:hover { background: var(--paper-shade); }
 .scrub { display: flex; align-items: center; gap: 10px; font: 700 20px/1 var(--pen); color: var(--pencil); }
 .scrub__track { position: relative; width: 150px; height: 3px; background: var(--paper-shade); border-radius: 3px; }
 .scrub__track::before { content: ""; position: absolute; inset: 0; width: calc(var(--p, 0) * 100%); background: var(--marker); border-radius: 3px; }
@@ -446,8 +499,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 }
 @media (max-width: 900px) {
   .hero__grid, .docu, .api, .numbers { grid-template-columns: minmax(0, 1fr); }
-  .fig__canvas { max-width: 420px; }
-  .note--name { display: block; margin: 8px 0 0; transform: rotate(-3deg); }
+  .note--name { position: static; display: block; margin: 8px 0 0; transform: rotate(-3deg); }
   .steps, .samples { grid-template-columns: minmax(0, 1fr); }
   .flow { flex-direction: column; align-items: stretch; }
   .flow__arrow { transform: rotate(90deg); align-self: center; flex-basis: 30px; }

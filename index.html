@@ -105,13 +105,58 @@
           </div>
 
           <figure class="fig">
-            <div class="fig__canvas">
-              <canvas class="hero__canvas" width="800" height="800" role="img"
-                aria-label="Scattered handwritten and code characters assembling into a ruled documentation page titled Send a message, stamped Reviewed."></canvas>
+            <div class="journey" aria-hidden="true">
+              <div class="jcard jcard--code">
+                <div class="jcard__bar"><span>src/messages.ts</span><span class="jcard__tag">source</span></div>
+                <div class="jcard__body">
+                  <span class="jscan"></span>
+<pre class="jcode"><code><span class="dec" data-k="ep">@Post('/v1/messages')</span>
+<span class="dec">@Auth(</span><span class="str" data-k="auth">'oauth2'</span><span class="dec">)</span>
+<span class="kw">async</span> <span class="fn" data-k="fn">sendMessage</span>(
+  <span data-k="to">to: string</span>,
+  <span data-k="text">text: string</span>,
+) {
+  <span class="kw">if</span> (expired(token)) <span class="kw">throw</span> <span class="num" data-k="401">401</span>;
+  <span data-k="cut">await queue.push({ to, text });</span>
+  <span class="kw">return</span> { status: <span class="str" data-k="ok">'delivered'</span> };
+}</code></pre>
+                  <span class="jnote" data-for="ep">endpoint</span>
+                  <span class="jnote" data-for="auth">auth!</span>
+                  <span class="jnote" data-for="to">params</span>
+                  <span class="jnote" data-for="401">error case</span>
+                  <span class="jnote jnote--red" data-for="cut">internal, cut</span>
+                  <span class="jnote" data-for="ok">success</span>
+                </div>
+              </div>
+
+              <ol class="jsteps">
+                <li data-step="0">read</li>
+                <li data-step="1">mark</li>
+                <li data-step="2">structure</li>
+                <li data-step="3">publish</li>
+              </ol>
+
+              <div class="jcard jcard--doc">
+                <div class="jcard__bar"><span>docs/messages.md</span><span class="jcard__tag jstate">draft</span></div>
+                <div class="jcard__body jdoc">
+                  <h3 class="jdoc__title"><span class="slot" data-t="fn"><span class="slot__fill">Send a message</span></span></h3>
+                  <p class="jdoc__ep"><span class="slot" data-t="ep"><span class="slot__fill"><b>POST</b> /v1/messages</span></span></p>
+                  <p class="jdoc__p"><span class="slot" data-t="auth"><span class="slot__fill">Requires an OAuth 2.0 token.</span></span></p>
+                  <p class="jdoc__h">Parameters</p>
+                  <p class="jdoc__row"><span class="slot" data-t="to"><span class="slot__fill"><code>to</code> string · required</span></span></p>
+                  <p class="jdoc__row"><span class="slot" data-t="text"><span class="slot__fill"><code>text</code> string · required</span></span></p>
+                  <p class="jdoc__h">Responses</p>
+                  <p class="jdoc__row"><span class="slot" data-t="ok"><span class="slot__fill"><b class="ok">200</b> delivered</span></span></p>
+                  <p class="jdoc__row"><span class="slot" data-t="401"><span class="slot__fill"><b class="err">401</b> token expired</span></span></p>
+                  <span class="stamp jstamp">Reviewed</span>
+                </div>
+              </div>
             </div>
-            <div class="scrub" aria-hidden="true"><span>code</span><span class="scrub__track"><i></i></span><span>clarity</span></div>
-            <figcaption><b>Fig. 1</b> <span class="fig-hint">Move your cursor across to edit code into clarity.</span></figcaption>
-            <span class="stamp stamp--hero" aria-hidden="true">v9.0 · stable</span>
+            <div class="scrub" aria-hidden="true"><span>code</span><span class="scrub__track"><i></i></span><span>docs</span></div>
+            <figcaption>
+              <b>Fig. 1</b> How code becomes docs. <span class="fig-hint">Move your cursor across to scrub.</span>
+              <button class="replay" type="button">↻ Replay</button>
+            </figcaption>
           </figure>
         </div>
       </section>
